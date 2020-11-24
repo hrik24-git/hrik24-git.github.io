@@ -1,0 +1,563 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.01877a06b072953c14c7.css">code[class*=language-],pre[class*=language-]{color:#f8f8f2;background:none;text-shadow:0 1px rgba(0,0,0,.3);font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#272822}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#8292a2}.token.punctuation{color:#f8f8f2}.token.namespace{opacity:.7}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#f92672}.token.boolean,.token.number{color:#ae81ff}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#a6e22e}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#f8f8f2}.token.atrule,.token.attr-value,.token.class-name,.token.function{color:#e6db74}.token.keyword{color:#66d9ef}.token.important,.token.regex{color:#fd971f}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><meta name="generator" content="Gatsby 2.24.67"/><title data-react-helmet="true">Malaria Detection using Convolutional Neural Network - Hrithik Pawar</title><meta data-react-helmet="true" name="description" content="Malaria Detection using Convolutional Neural Network with 93% accuracy developed using Keras."/><meta data-react-helmet="true" property="og:title" content="Malaria Detection using Convolutional Neural Network - Hrithik Pawar"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:description" content="Malaria Detection using Convolutional Neural Network with 93% accuracy developed using Keras."/><meta data-react-helmet="true" property="og:url" content="http://localhost:8000/Malaria-Detection"/><meta data-react-helmet="true" name="twitter:label1" content="Written by"/><meta data-react-helmet="true" name="twitter:data1" content="Hrithik Pawar"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="Hrithik Pawar"/><meta data-react-helmet="true" name="twitter:title" content="Malaria Detection using Convolutional Neural Network - Hrithik Pawar"/><meta data-react-helmet="true" name="twitter:description" content="Malaria Detection using Convolutional Neural Network with 93% accuracy developed using Keras."/><meta data-react-helmet="true" name="keywords" content="Full Stack Developer, Machine Learning Practitioner, Data Analyst Trainee, people, everyone, Deep Learning, CNN, Project"/><meta data-react-helmet="true" name="article:published_time" content="2020-10-05T00:00:00.000Z"/><meta data-react-helmet="true" name="article:modified_time" content="2020-10-05T00:00:00.000Z"/><meta data-react-helmet="true" name="twitter:label2" content="Filed under"/><meta data-react-helmet="true" name="twitter:data2" content="Deep Learning"/><meta data-react-helmet="true" property="og:image" content="http://localhost:8000/static/2d6a7eca7db276b1985b54f22dff8ae4/7223d/cover.jpg"/><meta data-react-helmet="true" name="twitter:image" content="http://localhost:8000/static/2d6a7eca7db276b1985b54f22dff8ae4/7223d/cover.jpg"/><script data-react-helmet="true" type="application/ld+json">
+        {
+          "@context": "https://schema.org/",
+          "@type": "Article",
+          "author": {
+            "@type": "Person",
+            "name": "Hrithik Pawar"
+          },
+          "keywords": "Deep Learning, CNN, Project",
+          "headline": "Malaria Detection using Convolutional Neural Network - Hrithik Pawar",
+          "url": "http://localhost:8000/Malaria-Detection",
+          "datePublished": "2020-10-05T00:00:00.000Z",
+          "dateModified": "2020-10-05T00:00:00.000Z",
+          "image": {
+            "@type": "ImageObject",
+            "url": "http://localhost:8000/static/2d6a7eca7db276b1985b54f22dff8ae4/7223d/cover.jpg",
+            "width": "1000",
+            "height": "520"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Hrithik Pawar"
+          },
+          "description": "Malaria Detection using Convolutional Neural Network with 93% accuracy developed using Keras.",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http://localhost:8000"
+          }
+        }
+      </script><style data-styled="bzOPpS kHKWRw cnBnZB jViCyd jLOYBk fVqyTA cROOCp gWrDHi MQpwo llwmof fYiJFa jWOxDX jZNSfz hRYAD faXnX lhFcmu GDWrm fTdjuL bXjWFc iHPqjx jtkVLk jqyLKa cCerLd bVnRow jqxPBx bYZhdV iKTLAq gTfYTh iHGPyz kXzLbm lfACiL lbetsi YZAaE hLhzMS gpDhwt ctpkkx etXHUJ dLTgSL fCazFg cXOFUh bqPxdl" data-styled-version="4.4.1">
+/* sc-component-id: sc-global-705724203 */
+html{line-height:1.15;-webkit-text-size-adjust:100%;} body{margin:0;} main{display:block;} h1{font-size:2em;margin:0.67em 0;} hr{box-sizing:content-box;height:0;overflow:visible;} pre{font-family:monospace,monospace;font-size:1em;} a{background-color:transparent;} abbr[title]{border-bottom:none;-webkit-text-decoration:underline;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted;} b,strong{font-weight:bolder;} code,kbd,samp{font-family:monospace,monospace;font-size:1em;} small{font-size:80%;} sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;} sub{bottom:-0.25em;} sup{top:-0.5em;} img{border-style:none;} button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0;} button,input{overflow:visible;} button,select{text-transform:none;} button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button;} button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0;} button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText;} fieldset{padding:0.35em 0.75em 0.625em;} legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal;} progress{vertical-align:baseline;} textarea{overflow:auto;} [type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0;} [type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto;} [type="search"]{-webkit-appearance:textfield;outline-offset:-2px;} [type="search"]::-webkit-search-decoration{-webkit-appearance:none;} ::-webkit-file-upload-button{-webkit-appearance:button;font:inherit;} details{display:block;} summary{display:list-item;} template{display:none;} [hidden]{display:none;} html{box-sizing:border-box;background-color:#fafafa;} body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;line-height:1.9em;} *{box-sizing:border-box;} h1,h2,h3,h4,h5,h6{outline:none;} a{color:#000;-webkit-text-decoration:none;text-decoration:none;} .gatsby-highlight{max-width:100% !important;} .gatsby-highlight-code-line{background-color:#353631;display:block;margin-right:-1em;margin-left:-1em;padding-right:1em;padding-left:0.75em;}
+/* sc-component-id: style__NavContainer-sc-1ck1w82-0 */
+.bzOPpS{z-index:1000;background-color:#20232a;position:-webkit-sticky;position:sticky;top:0;box-shadow:0 0 3px rgba(0,0,0,.03),0 3px 46px rgba(0,0,0,.07);}
+/* sc-component-id: style__Nav-sc-1ck1w82-1 */
+.kHKWRw{width:1260px;margin-left:auto;margin-right:auto;max-width:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;position:relative;} @media (max-width:1300px){.kHKWRw{padding:0 20px;}}
+/* sc-component-id: style__NavWrapper-sc-1ck1w82-2 */
+.jLOYBk{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;width:100%;height:70px;white-space:nowrap;} @media (max-width:576px){.jLOYBk{width:90%;}}
+/* sc-component-id: style__NavMenu-sc-1ck1w82-3 */
+.fVqyTA{-webkit-align-self:center;-ms-flex-item-align:center;align-self:center;list-style-type:none;margin:0;padding:0;} @media (max-width:576px){.fVqyTA{width:80%;overflow-x:auto;overflow-y:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 25px,#000 90%,transparent);mask-image:linear-gradient(to right,transparent,#000 25px,#000 90%,transparent);}}.cROOCp{-webkit-align-self:center;-ms-flex-item-align:center;align-self:center;list-style-type:none;margin:0;padding:0;}
+/* sc-component-id: style__NavMenuItem-sc-1ck1w82-4 */
+.gWrDHi{cursor:pointer;display:inline-block;border:0;background:transparent;outline:none;-webkit-text-decoration:none;text-decoration:none;}
+/* sc-component-id: style__NavLink-sc-1ck1w82-5 */
+.MQpwo{color:#fff;opacity:.8;padding:16px;-webkit-transition:opacity .5s;transition:opacity .5s;} .MQpwo:hover{opacity:1;}
+/* sc-component-id: style__SearchContainer-sc-1ck1w82-6 */
+.llwmof{-webkit-align-self:center;-ms-flex-item-align:center;align-self:center;position:relative;}
+/* sc-component-id: style__ToggleSearchButton-sc-1ck1w82-7 */
+.fYiJFa{cursor:pointer;color:#fff;opacity:.8;background:none;outline:none;border:0;-webkit-transition:opacity .5s;transition:opacity .5s;} .fYiJFa:hover{opacity:1;}
+/* sc-component-id: logo__LogoImage-sc-1eqkae8-0 */
+.jViCyd{max-height:50px;width:50px;margin-right:45px;} @media (max-width:576px){.jViCyd{margin-right:15px;}}
+/* sc-component-id: logo__HomeLink-sc-1eqkae8-1 */
+.cnBnZB{-webkit-align-self:center;-ms-flex-item-align:center;align-self:center;height:50px;}
+/* sc-component-id: style__StyledFooter-sc-1oqvjzu-0 */
+.gpDhwt{max-width:100%;padding:10px 0;z-index:700;position:relative;font-size:.9em;margin-top:50px;}
+/* sc-component-id: style__FooterContainer-sc-1oqvjzu-1 */
+.ctpkkx{width:1260px;margin-left:auto;margin-right:auto;max-width:100%;text-align:right;line-height:1.1em;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;} @media (max-width:1300px){.ctpkkx{padding:0 20px;}}
+/* sc-component-id: style__Copyright-sc-1oqvjzu-2 */
+.cXOFUh{margin:0;}
+/* sc-component-id: style__DesignBy-sc-1oqvjzu-3 */
+.bqPxdl{margin:0;opacity:.8;font-size:.8em;} .bqPxdl a{font-weight:bold;-webkit-text-decoration:none;text-decoration:none;color:#000;} .bqPxdl a:hover{-webkit-text-decoration:underline;text-decoration:underline;}
+/* sc-component-id: style__StyledNav-sc-1oqvjzu-4 */
+.etXHUJ ul{list-style-type:none;margin:0;padding:0;} .etXHUJ li{display:inline-block;margin-right:25px;} .etXHUJ li:last-child{margin-right:0;}
+/* sc-component-id: style__FooterMenuItem-sc-1oqvjzu-5 */
+.fCazFg{color:#000;-webkit-text-decoration:none;text-decoration:none;}
+/* sc-component-id: style__FooterMenuLink-sc-1oqvjzu-6 */
+.dLTgSL{color:#000;-webkit-text-decoration:none;text-decoration:none;}
+/* sc-component-id: toc__StyledNav-sc-1hwup8p-0 */
+.lhFcmu .toc-list{list-style-type:none;margin:0;padding:0;} .lhFcmu .toc-list .toc-list{padding-left:17px;padding-top:10px;} .lhFcmu .toc-list-item{line-height:1.2em;padding-bottom:10px;} .lhFcmu .toc-list-item:last-child{padding-bottom:0;} .lhFcmu .toc-link{color:#808080;-webkit-text-decoration:none;text-decoration:none;} .lhFcmu .is-active-link{color:#404040;font-weight:700;}
+/* sc-component-id: reading-progress__ReadingProgressBar-vxjjnv-0 */
+.jWOxDX{position:-webkit-sticky;position:sticky;height:5px;top:70px;background-color:#007acc;z-index:500;}
+/* sc-component-id: social-channel-list__StyledSocialChannels-sc-16w9pwh-0 */
+.YZAaE{list-style-type:none;margin:0;padding:0;}
+/* sc-component-id: social-channel-list__StyledSocialChannel-sc-16w9pwh-1 */
+.hLhzMS{display:inline-block;margin:0 10px;font-size:1.6em;opacity:.7;-webkit-transition:opacity .5s;transition:opacity .5s;} .hLhzMS:hover{opacity:1;}
+/* sc-component-id: avatar__StyledAvatar-sc-1v6bq9n-0 */
+.kXzLbm{max-width:55px;border-radius:100%;}
+/* sc-component-id: bio__StyledBio-sc-19adui4-0 */
+.iHGPyz{margin:auto;text-align:center;width:100%;}
+/* sc-component-id: bio__AuthorDescription-sc-19adui4-1 */
+.lbetsi{margin:10px 0 13px;} .lbetsi a{color:#000;-webkit-text-decoration:underline;text-decoration:underline;}
+/* sc-component-id: bio__AuthorName-sc-19adui4-2 */
+.lfACiL{margin:10px;}
+/* sc-component-id: post__PostContainer-h8gzap-0 */
+.jZNSfz{width:1260px;margin-left:auto;margin-right:auto;max-width:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;padding:0 !important;} @media (max-width:1300px){.jZNSfz{padding:0 20px;}}
+/* sc-component-id: post__LeftSidebar-h8gzap-1 */
+.hRYAD{min-width:255px;max-width:225px;-webkit-transition:opacity .5s,z-index .5s;transition:opacity .5s,z-index .5s;} @media (max-width:1300px){.hRYAD{position:fixed;opacity:0;z-index:-1;background-color:#fff;width:100% !important;max-width:100%;padding:0 20px;margin-top:-5px;height:calc(100vh - 70px);}}
+/* sc-component-id: post__PostContent-h8gzap-2 */
+.fTdjuL{margin-top:-5px;border-right:1px #e5eff5 solid;border-left:1px #e5eff5 solid;background-color:#fff;box-shadow:0 0 3px rgba(0,0,0,.03),0 3px 46px rgba(0,0,0,.1);z-index:10;width:1035px;max-width:100%;} .fTdjuL li > a,.fTdjuL p > a{color:#a4cbb8;border-bottom:2px #a4cbb8 solid;} .fTdjuL pre{margin:30px 0;} .fTdjuL blockquote{border-left:4px #a4cbb8 solid;background-color:#fafafa;margin:30px 0;padding:5px 20px;border-radius:.3em;} .fTdjuL h3::before,.fTdjuL h4::before,.fTdjuL h5::before,.fTdjuL h6::before{display:block;content:" ";height:90px;margin-top:-90px;visibility:hidden;} .fTdjuL h2{border-top:1px solid #ececec;margin-top:44px;padding-top:40px;line-height:1.2;} .fTdjuL code[class*="language-text"]{padding:5px;} .fTdjuL p > img{max-width:100%;border-radius:.3em;margin:30px 0;} .fTdjuL hr{border-top:1px solid #ececec;border-bottom:0;margin-top:44px;margin-bottom:40px;} .fTdjuL .gatsby-resp-image-link{margin:30px 0;max-width:100%;} .fTdjuL .gatsby-resp-image-link .gatsby-resp-image-image{border-radius:.3em;}
+/* sc-component-id: post__TocWrapper-h8gzap-3 */
+.faXnX{position:-webkit-sticky;position:sticky;top:70px;padding:40px 30px 40px 0;}
+/* sc-component-id: post__PostHeader-h8gzap-4 */
+.bXjWFc{padding:40px;} @media (max-width:576px){.bXjWFc{padding:20px;}}
+/* sc-component-id: post__FeaturedImage-h8gzap-5 */
+.jqyLKa{border-radius:0;} @media (max-width:1300px){.jqyLKa{margin-left:-1px;margin-right:-1px;}}
+/* sc-component-id: post__StyledPost-h8gzap-6 */
+.cCerLd{padding:40px;} @media (max-width:576px){.cCerLd{padding:20px;}}
+/* sc-component-id: post__PostMeta-h8gzap-7 */
+.iHPqjx{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;opacity:.8;font-size:.9em;}
+/* sc-component-id: post__PostTitle-h8gzap-8 */
+.jtkVLk{margin:0;padding:0;}
+/* sc-component-id: post__PostFooter-h8gzap-9 */
+.bVnRow{background-color:#fafafa;font-size:.8em;color:#666;padding:40px;line-height:1em;} .bVnRow p{margin:5px 0;}
+/* sc-component-id: post__FooterTagLink-h8gzap-10 */
+.jqxPBx{color:#000 !important;-webkit-text-decoration:none;text-decoration:none;border-bottom:0 !important;}
+/* sc-component-id: post__PostAddition-h8gzap-11 */
+.bYZhdV{background-color:#fff;border-top:1px #e5eff5 solid;border-bottom:1px #e5eff5 solid;z-index:700;position:relative;padding:40px;}
+/* sc-component-id: post__PostAdditionContent-h8gzap-12 */
+.iKTLAq{width:1260px;margin-left:auto;margin-right:auto;max-width:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;} @media (max-width:1300px){.iKTLAq{padding:0 20px;}}
+/* sc-component-id: post__BioWrapper-h8gzap-13 */
+.gTfYTh{width:50%;margin:auto;} @media (max-width:576px){.gTfYTh{width:100%;}}
+/* sc-component-id: post__ToggleTocButton-h8gzap-14 */
+.GDWrm{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;position:fixed;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;right:20px;bottom:20px;border-radius:100%;box-shadow:0 0 3px rgba(0,0,0,.03),0 3px 46px rgba(0,0,0,.1);border:0;z-index:5000;width:50px;height:50px;background-color:#20232a;color:#fff;outline:none;} @media (min-width:1300px){.GDWrm{display:none;}}</style><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="icon" href="/favicon-32x32.png?v=0dfab6a6d4746b75aea592f87b7e47a5" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><meta name="theme-color" content="#a4cbb8"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=0dfab6a6d4746b75aea592f87b7e47a5"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=0dfab6a6d4746b75aea592f87b7e47a5"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=0dfab6a6d4746b75aea592f87b7e47a5"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=0dfab6a6d4746b75aea592f87b7e47a5"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=0dfab6a6d4746b75aea592f87b7e47a5"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=0dfab6a6d4746b75aea592f87b7e47a5"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=0dfab6a6d4746b75aea592f87b7e47a5"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=0dfab6a6d4746b75aea592f87b7e47a5"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 0)
+          }), 0)
+        }
+      }
+    })
+  </script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml"/><link as="script" rel="preload" href="/webpack-runtime-d2c4da72ac7d283b7607.js"/><link as="script" rel="preload" href="/framework-81279cacaab4bdba7685.js"/><link as="script" rel="preload" href="/app-cd5d502700a82b70e6de.js"/><link as="script" rel="preload" href="/styles-7d4153d260c0197f0043.js"/><link as="script" rel="preload" href="/1bfc9850-3ff1cbed467f4813417f.js"/><link as="script" rel="preload" href="/commons-b578b680b3f5b3459afb.js"/><link as="script" rel="preload" href="/component---node-modules-nehalist-gatsby-theme-nehalem-src-templates-post-tsx-ac01f768f0f2ddfded57.js"/><link as="fetch" rel="preload" href="/page-data/Malaria-Detection/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/1116962356.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/2275848304.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/327791803.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/545095672.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/675363291.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="style__NavContainer-sc-1ck1w82-0 bzOPpS"><div class="common__Container-sc-1d5kp8-0 style__Nav-sc-1ck1w82-1 kHKWRw"><a class="logo__HomeLink-sc-1eqkae8-1 cnBnZB" href="/"><div class="logo__LogoImage-sc-1eqkae8-0 jViCyd gatsby-image-wrapper" style="position:relative;overflow:hidden;display:inline-block;width:50px;height:50px"><img aria-hidden="true" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAA7EAAAOxAGVKw4bAAADxElEQVQ4y11Uy05bVxS9tvELPzE2xIKEPABDiNSYAgZSSMCQ8HQhPEzBVCSkocWTAkrTIjpgxIcklTpJq44qZZDkBzJIpEiZRPmGdOhrzu5ah3Mp6ZW27j3n7r3O3mvvs6y6WMziE49GrUQ87uF3LBJx4Xse9hvsA6wCs2EfYb/DlhCnfRnjYDhvK5VIWPFYzG0chmCv6+vqJJlIfGap+nr95j/4vIHlTTIu7J+ApRsaiKzB4LhNZwNWhaMdDgaPo+GwioRCKuj3H8PXxn87afxguw5oYyqF8qLRkzKj0fsoVRAs+LYDfr9Knzunvi4U1OTEhJqemlJLi4uqKZ1WoWBQRSMRmwcxBmA/EAN7GstCNldxciVUWyvhUKjq9/mkualJlUol1dbaKnXxuIAS2dzclJvDw8rtcqkIDoZ/lTGIVcDIWs6DtJ+BDzpUcIq4LEsNDg7Kl93dgt8CAKnxeCQJDmdnZvQafgqH6xjGAuNvyzShE4sKTuFPnqwYvLa2Jj8/fiwjIyOyt7cnc3NzsrOzIz89eiQGiG/FGGZoGpUl4I/sHMl2AFkyM9kFQHF5We5tbMj8/LyUy2X5ZmVFTLmnwIwlBrB+IeCTM4DaCQ2RVDKps2xsaCAFbJR8deOGkFNW4ICaDB3AZwR8wRHAZtVkKMFAQFqvXJGjoyPJj45KAv+53t/fl96eHmEF5NoBZawBfPkZIDlhdsxyA2WO3LqlyxwcGJD1Ukkm7tyRlWJRLra06Gb5vN7/A74i4FNdMq4WM2Mnl8FbeXtbstevy8LCghQKBcEIybWuLvl2fV2Pz/jYmF7XYiZ5AQzgHwTcNQsbpahisaiudnZqHguzs7qz3dmsfPfggQbrAsjy0pL09fZqOjDwguF2AA8IeI3XrBbZZTIZlc/nFcvxuN2aq8PDQ2YhWw8fSq6vT26Pj0t/f78uW9+g6WmFeVVhlJ5ubOxxxOEvXCfpyGQqa6ur0p/LqeGhIRnL5+XXgwNBkC6R2Xy/taVHCX6KexgjeyCXk4DX+/z0pkBFvgAPusMYi2pHRwfBVaa9nVdQjwq/mRXnc3JyUl2+dEnqE4njRXB8oblZ/DU1Octon8eoRZmjAEVRAZ+P4qB5JOkUCu6TY44WM4do2At37x7jYKlxu7Xi+L1eD7Mjj4586QalTvTPNsaRUMaqlC7wZYMvNkFw+L4p1JVpazsVB61n5m7fhr3Tmvif5skZndRCi9l7j/WMQ1vL+fOWIw6nbzg4qu2FrfIqGWX+BPsH9hb2J2wd5jfJuM9i/AuIeripb3YfJAAAAABJRU5ErkJggg==" alt="Hrithik Pawar" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms"/><noscript><picture><source srcset="/static/0dfab6a6d4746b75aea592f87b7e47a5/8ba1e/nehalist-gatsby.png 1x,
+/static/0dfab6a6d4746b75aea592f87b7e47a5/f937a/nehalist-gatsby.png 1.5x,
+/static/0dfab6a6d4746b75aea592f87b7e47a5/71eb7/nehalist-gatsby.png 2x" /><img loading="lazy" width="50" height="50" srcset="/static/0dfab6a6d4746b75aea592f87b7e47a5/8ba1e/nehalist-gatsby.png 1x,
+/static/0dfab6a6d4746b75aea592f87b7e47a5/f937a/nehalist-gatsby.png 1.5x,
+/static/0dfab6a6d4746b75aea592f87b7e47a5/71eb7/nehalist-gatsby.png 2x" src="/static/0dfab6a6d4746b75aea592f87b7e47a5/8ba1e/nehalist-gatsby.png" alt="Hrithik Pawar" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><div class="style__NavWrapper-sc-1ck1w82-2 jLOYBk"><ul class="style__NavMenu-sc-1ck1w82-3 fVqyTA"><li class="style__NavMenuItem-sc-1ck1w82-4 gWrDHi"><a class="style__NavLink-sc-1ck1w82-5 MQpwo" href="/">Home</a></li><li class="style__NavMenuItem-sc-1ck1w82-4 gWrDHi"><a class="style__NavLink-sc-1ck1w82-5 MQpwo" href="/page">About</a></li></ul><div class="style__SearchContainer-sc-1ck1w82-6 llwmof"><ul class="style__NavMenu-sc-1ck1w82-3 cROOCp"><li class="style__NavMenuItem-sc-1ck1w82-4 gWrDHi"><button role="button" aria-label="Toggle search" class="style__ToggleSearchButton-sc-1ck1w82-7 fYiJFa"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg></button></li></ul></div></div></div></div><main><div style="width:0%" color="#007acc" class="reading-progress__ReadingProgressBar-vxjjnv-0 jWOxDX"></div><div class="common__Container-sc-1d5kp8-0 post__PostContainer-h8gzap-0 jZNSfz"><div class="post__LeftSidebar-h8gzap-1 hRYAD"><div class="post__TocWrapper-h8gzap-3 faXnX"><nav class="toc__StyledNav-sc-1hwup8p-0 lhFcmu toc"></nav></div></div><button role="button" aria-label="Toggle table of contents" class="post__ToggleTocButton-h8gzap-14 GDWrm"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M432 416H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-128H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-128H16a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-128H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"></path></svg></button><div class="post__PostContent-h8gzap-2 fTdjuL"><article class="post"><header class="post__PostHeader-h8gzap-4 bXjWFc"><section class="post__PostMeta-h8gzap-7 iHPqjx"><a href="/tag/deep-learning">Deep Learning</a><time dateTime="2020-10-05T00:00:00.000Z">05 October, 2020</time></section><h1 class="post__PostTitle-h8gzap-8 jtkVLk">Malaria Detection using Convolutional Neural Network</h1></header><div class="post__FeaturedImage-h8gzap-5 jqyLKa gatsby-image-wrapper" style="position:relative;overflow:hidden"><div aria-hidden="true" style="width:100%;padding-bottom:43.99999999999999%"></div><img aria-hidden="true" src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAJABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIDBP/EABYBAQEBAAAAAAAAAAAAAAAAAAEAAv/aAAwDAQACEAMQAAABuItqxnB//8QAGhAAAwADAQAAAAAAAAAAAAAAAAECERIxQf/aAAgBAQABBQLZsqqFd48K7//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABkQAAIDAQAAAAAAAAAAAAAAAAABECIxgf/aAAgBAQAGPwLWOzNOT//EABkQAQACAwAAAAAAAAAAAAAAAAERYQAQQf/aAAgBAQABPyGEM151CnAAmVq7p//aAAwDAQACAAMAAAAQ0x//xAAYEQACAwAAAAAAAAAAAAAAAAAAAREhUf/aAAgBAwEBPxCEVh//xAAVEQEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAgEBPxAn/8QAHxABAAIBAwUAAAAAAAAAAAAAAQARITFBsVFxgdHw/9oACAEBAAE/EF7RQiG0r3FNMUorrrtxMIGbnEfrtHX54JqT/9k=" alt="" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms"/><noscript><picture><source srcset="/static/2d6a7eca7db276b1985b54f22dff8ae4/8850c/cover.jpg 200w,
+/static/2d6a7eca7db276b1985b54f22dff8ae4/da113/cover.jpg 400w,
+/static/2d6a7eca7db276b1985b54f22dff8ae4/7223d/cover.jpg 600w" sizes="(max-width: 600px) 100vw, 600px" /><img loading="lazy" sizes="(max-width: 600px) 100vw, 600px" srcset="/static/2d6a7eca7db276b1985b54f22dff8ae4/8850c/cover.jpg 200w,
+/static/2d6a7eca7db276b1985b54f22dff8ae4/da113/cover.jpg 400w,
+/static/2d6a7eca7db276b1985b54f22dff8ae4/7223d/cover.jpg 600w" src="/static/2d6a7eca7db276b1985b54f22dff8ae4/7223d/cover.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div><section class="post__StyledPost-h8gzap-6 cCerLd post"><h1 id="maleria-detection" style="position:relative;"><a href="#maleria-detection" aria-label="maleria detection permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Maleria Detection</h1>
+<p>Hello! Here we are going to deal with identification of cell which are infected by Maleria. We have dataset in which we have images of cells
+stored in two separate directories. One directory contains 13,780 images on infected cells and in another directory named as uninfected also contains
+13,780 images of uninfected cells. </p>
+<p>So, in this notebook we are going to create a Deep Learning Model which will classify the cell image as infected on uninfected by marleria.</p>
+<p>Here we will be dealing with images hence using a Convolutional Neural Network will be a first choice for any Machine Learning Practitioner.
+CNN will extract important features from the image, which will help our model to classify the particualar image as it is a
+infected or uninfected cell of Maleria.</p>
+<h2 id="collecting-data-set" style="position:relative;"><a href="#collecting-data-set" aria-label="collecting data set permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Collecting Data Set</h2>
+<p>This will be first step for every Machine Learning or Deep Learning Project. Without data, how will you train your model...</p>
+<p>So let's download our dataset of Cell Images.</p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python">!wget https<span class="token punctuation">:</span><span class="token operator">//</span>ceb<span class="token punctuation">.</span>nlm<span class="token punctuation">.</span>nih<span class="token punctuation">.</span>gov<span class="token operator">/</span>proj<span class="token operator">/</span>malaria<span class="token operator">/</span>cell_images<span class="token punctuation">.</span><span class="token builtin">zip</span></code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">--2020-10-04 14:41:51--  https://ceb.nlm.nih.gov/proj/malaria/cell_images.zip
+Resolving ceb.nlm.nih.gov (ceb.nlm.nih.gov)... 130.14.52.15, 2607:f220:41e:7052::15
+Connecting to ceb.nlm.nih.gov (ceb.nlm.nih.gov)|130.14.52.15|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 353452851 (337M) [application/zip]
+Saving to: ‘cell_images.zip’
+
+cell_images.zip     100%[===================&gt;] 337.08M  40.8MB/s    in 8.9s    
+
+2020-10-04 14:42:01 (37.8 MB/s) - ‘cell_images.zip’ saved [353452851/353452851]</code></pre></div>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python">!unzip cell_images<span class="token punctuation">.</span><span class="token builtin">zip</span></code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">[1;30;43mStreaming output truncated to the last 5000 lines.[0m
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_118.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_126.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_134.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_141.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_168.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_175.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_183.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_221.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_222.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_87.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_91.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102516_cell_104.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102516_cell_13.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102516_cell_146.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102516_cell_168.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102516_cell_177.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102516_cell_179.png  
+ .
+ .
+ .
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_141520_cell_22.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_141520_cell_31.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_141520_cell_38.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_141520_cell_42.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_141520_cell_45.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_141520_cell_64.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_141520_cell_73.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_141520_cell_9.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_11.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_14.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_15.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_3.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_45.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_47.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_52.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_53.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_55.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_56.png  
+  inflating: cell_images/Uninfected/Thumbs.db  </code></pre></div>
+<p>Above we downloaded the zip file that contains our data and we extracted it. As mentioned above we get two folders in <code class="language-text">cell_images</code> folder, those are <code class="language-text">Parasitized</code> and <code class="language-text">Uninfected</code>. <code class="language-text">Parasitized</code> folder contains infected cell images having count of 13,780, similarly <code class="language-text">Uninfected</code> folder contains uninfected mean healthy cell images having count of 13,780.</p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python">Cell_Images_dir <span class="token operator">=</span> <span class="token string">'/content/cell_images'</span>
+Parasitized_dir <span class="token operator">=</span> <span class="token string">'/content/cell_images/Parasitized'</span>
+Uninfected_dir <span class="token operator">=</span> <span class="token string">'/content/cell_images/Uninfected'</span></code></pre></div>
+<p>Above we stored there the path of each folder so that it will be easier to use the path by directly calling the variables.</p>
+<p>Now, Let's visualize what we have in our dataset. Let see one one images from </p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">import</span> os
+
+Parasitized_images <span class="token operator">=</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span>Parasitized_dir<span class="token punctuation">)</span>
+Uninfected_images <span class="token operator">=</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span>Uninfected_dir<span class="token punctuation">)</span></code></pre></div>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Parasitized Cell '</span><span class="token punctuation">)</span>
+Image<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span>Parasitized_dir <span class="token operator">+</span> <span class="token string">'/C129P90ThinF_IMG_20151004_134306_cell_126.png'</span><span class="token punctuation">)</span></code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">Parasitized Cell </code></pre></div>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 157px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/544a084aaf6cec81b0f067e63c1eaafd/fdd16/output_9_1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 94.26751592356688%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAIAAAAf7rriAAAACXBIWXMAAAsSAAALEgHS3X78AAADRklEQVQ4y22U22sUdxTHZxUfLH2pgiQUi9V4o+jDUlqlkhZBFI23IFp9EEkoJnmzpCltmhpvMTFhN/O7z8XZ3dk1a6J5UAt9UvCx0KbN7lx3m2iyTZBY/Bs885v17uEw/PbsfOac8/2d309RpC2TFq8/37JpsKOtctN6fMu+O9jfdbSls/Vgw+qP4K9EIqG8a8tkNLm5yfrh3Fwhu3gj5wnqCTZjGUsThaXJ4pSBk5ua4J3lL3K8wjavW1vo+7FWsBdytkeZQ3EgeMC5R4iDUQmhx9fNaYE/bWx4mwfL/9rzbHLcIcTFNOQiECLQRAALFjtzVPRI1+zuc+s/bojbrJNtLXufThbLCAMWuSRDTYtcCE/FpaGUM5IujaTnqV4axsmmDbJkyU9e/KWWs3zGJKlVdC0mYeGqeHog5aZpQFnF4A9PXfht40B52PyudV9E7ti2dSZ/3ec04EzmjDEdPNREeUQtj+DQ0ENTVE0+1Tt696uBqYv6X6bauHqV0n3q2P+3iw7BAFc0AdkkCU9ogXmIBppeyZrVTMRXDN1HopQi/43lfj59Quk7c/JJMe8SAq+CMB7GoeChDl8BwZirEp+LSsaYsY1qJurCSWEHsdmM+QBdVTK93TU7C9sTMB5QDvKEnANZNbSqafiMl1NkepiWUvSfIfXvK2kPcZdA/9ofRlo5e+TAk2JBZoaNjaSWPQMMDm3rEPQQc0ahCuYTDjlgO2ct8961fmXLurWzeStKCzAMhmChxsErsvJ683IBQZ9RH0YIEcj30+lvI8HHentq2SxoFkYke52vNy+4D4pw6nPiUwqZ54u5Q807I3jXts8Wx/IBoy5Sw2jP6Es+dvgZBRnxGS4j9ZFp3hnoX7FieX22j3/TPA9zQkFb8joWk3IKqIeRi0Z9QpZujx3ctaM+nvGgn9z99dL4DSjepTjCIDkkFLIQIBmeVkFq7Jmi/VA0XgnlxfGEgwqzPtTRNl/I1XJZEMajxIvqJB7FsP7X0OCcLkwUOltb3jgYL+8DeO7f+cXv1y7XbubmCtacbc1kjLm8tTBu/6mhwY725uT2hLT3XAlx9MMPVu75Mom+75q41HsfD9nne9oP7/ukcY0s9Y3L5DmaSDXKj/6u1wAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="png"
+        title="png"
+        src="/static/544a084aaf6cec81b0f067e63c1eaafd/fdd16/output_9_1.png"
+        srcset="/static/544a084aaf6cec81b0f067e63c1eaafd/fdd16/output_9_1.png 157w"
+        sizes="(max-width: 157px) 100vw, 157px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Uninfected Cell '</span><span class="token punctuation">)</span>
+Image<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span>Uninfected_dir <span class="token operator">+</span> <span class="token string">'/C142P103ThinF_IMG_20151005_223257_cell_174.png'</span><span class="token punctuation">)</span></code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">Uninfected Cell </code></pre></div>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 124px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/8befa706b332b586b08e0251c7f53301/d6e54/output_10_1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 114.51612903225808%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAXCAIAAACEf/j0AAAACXBIWXMAAAsSAAALEgHS3X78AAAD0UlEQVQ4y22U228UVRzHh61PVEEkAsWUYjTogzE+8NCQ8EBIqyTUiCHRigkmQqy1oRejGOKLRg22m6U7O2ful53L3rqFAm9KgiHG7u7s7LV7p65Jg/+H3zMTkFYnv5ycmTmf3/f8LucwzOMnFNrlP8zbo8evT3/ayeq9m4b0zexrI8P4ix9YwPzvMxAKYRwfPb62+F1/1dnMWCWV91S+mzQ2bHV57otXhw8Hy6j7beQAJT8cO7V1O9Wy9bxAcnysIHAwTFyJ9DPOAy7y0fjpgPyXDzQnx071s05R4nM8GD5PuAJPYJjA1mNsRREfpi12fuatY69s4ydOjj66kyqKWMq6AgkwuHB9L76xOY7N81wvGX90N3XpvTN+jkJ0z7d//r5pqTmfzJOY62OwoihgLGAvhC3EWJdHFOyGpd7nlvbv3UNl3z15op+x8wiS51yBK4pgRE+WSooM8yTRFUmBY9dv3CiQWFGkiUCAn507S+HIlameY+S4KCUlvqSIJVWqGmrNUKu6UtHksiY/WAz/vhTxRGyHCjRM7TcSPrDveUa+utCMq+vLyy7hPFkoa1LdVBu2Dtuw9VpcxZccy+WikCWuyHkSD/HNrLVw4TwzdW4ClfgjGnUJKasSVgNrpcx2xsZYM9WSKpZVGYH4ERHACORhxpSvLTDzk+e3bqVRT6QH66qG3HSMTsbu3nQ6q5SHr6qhQN+TBMAwKAO+PnOZmRw/3V9NuDLvKXTPUG4mjHbGBNy7lWivWM2kUTc1RA7NQBlwNxknX80yewZ3Fw2hFpeLMpQFKDccrfMY7mRtClsaviMjT5Q30/ZPn19i9j47WLGValwqQlwWKpqEZm6njfaK2c5aGJtJvW5rFR0wH4ijrn9mE5G5aVqt5S9nttZSCBv/EHbNVBoJrZUyWmmzlY5T2FIBlxQhgGHdtHnlg/cpfPTwoV/ZpZZtFERSVsSKjsiVDUdvJIyGYwQFw0e0QABXVKliKseODDMhv8VHhg7e5yINS3d98bIuVeMK8gQMjqisJpX8mGm2Eib/9XzIP1HMMwMDGD8+M/bXatKViec3GTKP9vI7jGqCpBUWCObdlH3izTd2Xgb81bm/72ZyQgxle9oQLTqXFklEnp1rFy9suw+C8zly6OA9bnFrLQ33SH5gKIHnT/Ii10tb92LhAy/s23ak6fn0X15+aSg8O+UZUj2uYjVIZBFWVIRuyvwluhhcaaFd/7nPntwyrx89cif8Q2/FqttKJ22iZwo6iSxMw/VOzR18kMbnBndfPDvuOWLix28/mXhn6MX9wVX3NPkPow+ftjtoyosAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="png"
+        title="png"
+        src="/static/8befa706b332b586b08e0251c7f53301/d6e54/output_10_1.png"
+        srcset="/static/8befa706b332b586b08e0251c7f53301/d6e54/output_10_1.png 124w"
+        sizes="(max-width: 124px) 100vw, 124px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<h2 id="preprocessing-the-data" style="position:relative;"><a href="#preprocessing-the-data" aria-label="preprocessing the data permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Preprocessing The Data</h2>
+<p>After visualizing the Images from both classes we can easily detect that there is an infecter portion in Parasitized images. But we want to train our deep learning model that it should detect that and classify the images in Paracitized or Uninfected classes.</p>
+<p>Now we have data which is in image format, but we have to convert it in machine tarinable format. We cannot input the image data as it is, we have to preprocess it first. The data we have is already supervised and separeted in folder so we have some functions from <code class="language-text">tensorflow</code> which can easily preprocess these data.</p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">from</span> tensorflow<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>preprocessing<span class="token punctuation">.</span>image <span class="token keyword">import</span> ImageDataGenerator
+
+data_gen <span class="token operator">=</span> ImageDataGenerator<span class="token punctuation">(</span>validation_split<span class="token operator">=</span><span class="token number">0.2</span> <span class="token punctuation">,</span>rescale<span class="token operator">=</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">255.0</span><span class="token punctuation">)</span>
+
+cell_images_training <span class="token operator">=</span>  data_gen<span class="token punctuation">.</span>flow_from_directory<span class="token punctuation">(</span>Cell_Images_dir<span class="token punctuation">,</span> target_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">125</span><span class="token punctuation">,</span> <span class="token number">125</span><span class="token punctuation">)</span><span class="token punctuation">,</span> class_mode<span class="token operator">=</span><span class="token string">'categorical'</span><span class="token punctuation">,</span> subset<span class="token operator">=</span><span class="token string">'training'</span><span class="token punctuation">)</span>
+cell_images_validation <span class="token operator">=</span>  data_gen<span class="token punctuation">.</span>flow_from_directory<span class="token punctuation">(</span>Cell_Images_dir<span class="token punctuation">,</span> target_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">125</span><span class="token punctuation">,</span> <span class="token number">125</span><span class="token punctuation">)</span><span class="token punctuation">,</span> class_mode<span class="token operator">=</span><span class="token string">'categorical'</span><span class="token punctuation">,</span> subset<span class="token operator">=</span><span class="token string">'validation'</span><span class="token punctuation">)</span></code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">Found 22048 images belonging to 2 classes.
+Found 5510 images belonging to 2 classes.</code></pre></div>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python">cell_images_training<span class="token punctuation">.</span>class_indices</code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">{&#39;Parasitized&#39;: 0, &#39;Uninfected&#39;: 1}</code></pre></div>
+<p><strong>If you are seeing this first time then I am sure it's little confusing, Let me explain what it is and what is it doing?</strong></p>
+<p>First we imported a <code class="language-text">ImageDataGenerator</code> class from <code class="language-text">keras</code> which helps us to preprocess images so that we can use them to train our neural network.  </p>
+<p>Next we created a object of <code class="language-text">ImageDataGenerator</code> class and passed a <code class="language-text">Normalization Factor</code> i.e. <code class="language-text">1/255.0</code>.
+Normalization is a process that changes the range of pixel intensity values. If you want to read more about normalization then <a href="https://en.wikipedia.org/wiki/Normalization_(image_processing)">Click Here</a>.</p>
+<p>There is one more parameter that we passed, which is <code class="language-text">validation_split</code>. It will split our data in two datasets <code class="language-text">training</code> and <code class="language-text">testing</code>. </p>
+<p>After creating the object, now we are able to access the functions of it. There is function <code class="language-text">flow_from_directory</code> which goes through the directory and catogorixe the data according to the folders in passed directory. Let's understand about the parameters that are passed in it:</p>
+<ul>
+<li><code class="language-text">Cell_Image_dir</code> - This is a variable where path of main directory is stored. This directory contains training images of cells classified in two different folders as <code class="language-text">Parasitized</code> and <code class="language-text">uninfected</code>.</li>
+<li><code class="language-text">target_size=(125, 125)</code> - It converts all images in same size as passed. Here I passes (125, 125). In Neural Networks it is very important that all input images must have same size. </li>
+<li><code class="language-text">class_mode=&#39;categorical&#39;</code> -  It specifies the type of classification that must be done on passed directory. </li>
+<li><code class="language-text">subset=&#39;training&#39;</code> / <code class="language-text">subset=&#39;validation&#39;</code> - It will classify datasets into training and validation dataset.</li>
+</ul>
+<p>If you want to read more about Image Processing in Keras then <a href="https://keras.io/api/preprocessing/image/">Click Here</a></p>
+<p>Now we are ready with our Data. Preprocessing of our data is handled by Keras. Now we can work on creating Nerural Network and traing our data on that model. </p>
+<p>Here we will be using Keras for creating our Deep Neural Network. We will be dealing with image data hence we will use Convolutional Neural Network to train our data. </p>
+<p>Let's import the necessary packages, then we will discuss about each of them. </p>
+<h2 id="preparing-neural-network" style="position:relative;"><a href="#preparing-neural-network" aria-label="preparing neural network permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Preparing Neural Network</h2>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">from</span> tensorflow<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers <span class="token keyword">import</span> Conv2D<span class="token punctuation">,</span> MaxPool2D<span class="token punctuation">,</span> Dense<span class="token punctuation">,</span> Dropout<span class="token punctuation">,</span> Flatten
+<span class="token keyword">from</span> tensorflow<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>models <span class="token keyword">import</span> Sequential</code></pre></div>
+<p>Above we imported different layers and <code class="language-text">Sequential</code> model from Keras. Each layer has different tasks to perform.  </p>
+<p>Layers that we imported:</p>
+<ul>
+<li><code class="language-text">Conv2D</code> - This layer creates a convolution kernel that is convolved with the layer input to extract features from inputed image.</li>
+<li><code class="language-text">MaxPool2D</code> - Downsamples the input representation by taking the maximum value over the window defined by <code class="language-text">pool_size</code> for each dimension along the features axis.</li>
+<li><code class="language-text">Dense</code> - Dense layer adds another layer in Neural Network with specific activation function.</li>
+<li><code class="language-text">Dropout</code> - The Dropout layer randomly sets input units to 0, which helps in overfitting the model</li>
+<li><code class="language-text">Flatten</code> - Flattens the input. Converts input size to 1 dimension. </li>
+<li><code class="language-text">Sequential</code> - A Sequential model is appropriate for a plain stack of layers. Here we will be dealing continual series of Layers. </li>
+</ul>
+<p>Now, let's create our model for classification of infected Malaria cell images.  </p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python">model <span class="token operator">=</span> Sequential<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Conv2D<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">,</span> input_shape<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">125</span><span class="token punctuation">,</span> <span class="token number">125</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>MaxPool2D<span class="token punctuation">(</span>pool_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Conv2D<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>MaxPool2D<span class="token punctuation">(</span>pool_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Conv2D<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>MaxPool2D<span class="token punctuation">(</span>pool_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Conv2D<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>MaxPool2D<span class="token punctuation">(</span>pool_size<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Dropout<span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Dense<span class="token punctuation">(</span><span class="token number">512</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Dense<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'softmax'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span><span class="token builtin">compile</span><span class="token punctuation">(</span>loss<span class="token operator">=</span><span class="token string">'categorical_crossentropy'</span><span class="token punctuation">,</span> optimizer<span class="token operator">=</span><span class="token string">'rmsprop'</span><span class="token punctuation">,</span> metrics<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'accuracy'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre></div>
+<p>Above we have created our Neural Network which will be used to classify the infected Malaria Cell Images. </p>
+<p>First we created <code class="language-text">model</code> as a object of <code class="language-text">Sequential</code> class. Here our neaural network gets initiated. </p>
+<p>Then we will <code class="language-text">add</code> layers to the neural network, there positions are pre-decided as per their functionality.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 1200px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/176224fd71739aee63645f9bca200a41/e6205/CNN.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 33.666666666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAHABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAdyiAf/EABUQAQEAAAAAAAAAAAAAAAAAABBB/9oACAEBAAEFAof/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAVEAEBAAAAAAAAAAAAAAAAAAAQMf/aAAgBAQAGPwKv/8QAGRAAAwEBAQAAAAAAAAAAAAAAAAERMSFR/9oACAEBAAE/IVUl69K5pp//2gAMAwEAAgADAAAAEP8A/wD/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAZEAEAAwEBAAAAAAAAAAAAAAABABEhkYH/2gAIAQEAAT8QJlxNBj5BFjkGl29n/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="jpeg"
+        title="jpeg"
+        src="/static/176224fd71739aee63645f9bca200a41/e5166/CNN.jpg"
+        srcset="/static/176224fd71739aee63645f9bca200a41/f93b5/CNN.jpg 300w,
+/static/176224fd71739aee63645f9bca200a41/b4294/CNN.jpg 600w,
+/static/176224fd71739aee63645f9bca200a41/e5166/CNN.jpg 1200w,
+/static/176224fd71739aee63645f9bca200a41/e6205/CNN.jpg 1255w"
+        sizes="(max-width: 1200px) 100vw, 1200px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>Above image shows the struture on Convolutional Neural Network.</p>
+<p>Whole Neural Network is divided into two sections: </p>
+<ol>
+<li>Feature Learning- </li>
+</ol>
+<p>  Here we will be extracting the important features from the image to make perfect classification. In this layer we have <code class="language-text">Conv2D</code> and <code class="language-text">MaxPool2D</code> layers. </p>
+<ul>
+<li>
+<p><code class="language-text">Conv2D</code> - As we know this is a convolutional layer. It creates kernels and convolve it throughout the image which focuses on the particular feature of image as per  the values in the kernel. Keras takes care of defining kernel with different values. Let's discuss about the parameters that we passed in convolutional layer.</p>
+<ul>
+<li><code class="language-text">64</code> - The first parameter in Conv2D layer is the number of kernels that we want to be convolved throughout the image. </li>
+<li><code class="language-text">(3, 3)</code> - The second parameter is the size of that kernel.</li>
+<li><code class="language-text">activation=&#39;relu&#39;</code> - Here we pass the activation function to convert the result of convolutin in binary. </li>
+<li><code class="language-text">input_shape = (125, 125, 3)</code> - Here we describe the shape of the input image. This we need to specify in only first layer.</li>
+</ul>
+</li>
+<li>
+<p><code class="language-text">MaxPool2D</code> - This is a Pooling Layer, this is used to decrease some shape of the image and extract only maximum value in particular window. </p>
+<ul>
+<li><code class="language-text">pool_size = (2, 2)</code> - Here we pass the size of pool window. This window in revolved throughout the convolved image and extracts only the maximum value.</li>
+</ul>
+</li>
+</ul>
+<p>  These two layers are used to extract important features for perfect classifiaction.</p>
+<ol start="2">
+<li>Classification - </li>
+</ol>
+<p>  In this section Neural Network focuses on the classification part. Here we have <code class="language-text">Flatten</code> and <code class="language-text">Dense</code> Layers. </p>
+<ul>
+<li><code class="language-text">Flatten</code> - This layer is used for dimentionality reduction. This reduces the dimention of the input data and convert it into searies of features. </li>
+<li><code class="language-text">Dense</code> - Dense layer just adds another neural layer in the network, which is also called fully connected layer, which important to connect the flatten layer with output layer.</li>
+</ul>
+<p>In Neural Network we can also see one layer named <code class="language-text">Dropout</code>. What this layer does is that it randomly sets input to zero. It is used to avoid overfitting of the model. </p>
+<p>This is the overview of our neural network, but it only tells that what it is used for but if you want to see what is happening inside, then we have a function <code class="language-text">summary()</code> which gives detailed overview of our model.  </p>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python">model<span class="token punctuation">.</span>summary<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">Model: &quot;sequential&quot;
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d (Conv2D)              (None, 123, 123, 64)      1792      
+_________________________________________________________________
+max_pooling2d (MaxPooling2D) (None, 61, 61, 64)        0         
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 59, 59, 64)        36928     
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 29, 29, 64)        0         
+_________________________________________________________________
+conv2d_2 (Conv2D)            (None, 27, 27, 128)       73856     
+_________________________________________________________________
+max_pooling2d_2 (MaxPooling2 (None, 13, 13, 128)       0         
+_________________________________________________________________
+conv2d_3 (Conv2D)            (None, 11, 11, 128)       147584    
+_________________________________________________________________
+max_pooling2d_3 (MaxPooling2 (None, 5, 5, 128)         0         
+_________________________________________________________________
+flatten (Flatten)            (None, 3200)              0         
+_________________________________________________________________
+dropout (Dropout)            (None, 3200)              0         
+_________________________________________________________________
+dense (Dense)                (None, 512)               1638912   
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 1026      
+=================================================================
+Total params: 1,900,098
+Trainable params: 1,900,098
+Non-trainable params: 0
+_________________________________________________________________</code></pre></div>
+<p>As you can see above, it gives the complete overview of the our Neural Network. It tell that in our network we arew dealing with nearly 1 million neurons.</p>
+<p>So now let train the model with the Dataset that we generated.</p>
+<h2 id="training-neural-network" style="position:relative;"><a href="#training-neural-network" aria-label="training neural network permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Training Neural Network</h2>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python">H <span class="token operator">=</span> model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>cell_images_training<span class="token punctuation">,</span> epochs<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span> validation_data<span class="token operator">=</span>cell_images_validation<span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span></code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">Epoch 1/10
+689/689 [==============================] - 36s 52ms/step - loss: 0.3346 - accuracy: 0.8460 - val_loss: 0.2131 - val_accuracy: 0.9376
+Epoch 2/10
+689/689 [==============================] - 33s 48ms/step - loss: 0.1873 - accuracy: 0.9445 - val_loss: 0.2404 - val_accuracy: 0.9397
+Epoch 3/10
+689/689 [==============================] - 34s 49ms/step - loss: 0.1802 - accuracy: 0.9473 - val_loss: 0.2172 - val_accuracy: 0.9416
+Epoch 4/10
+689/689 [==============================] - 34s 49ms/step - loss: 0.1744 - accuracy: 0.9495 - val_loss: 0.1930 - val_accuracy: 0.9428
+Epoch 5/10
+689/689 [==============================] - 33s 48ms/step - loss: 0.1763 - accuracy: 0.9487 - val_loss: 0.2269 - val_accuracy: 0.9397
+Epoch 6/10
+689/689 [==============================] - 33s 48ms/step - loss: 0.1716 - accuracy: 0.9506 - val_loss: 0.2904 - val_accuracy: 0.9448
+Epoch 7/10
+689/689 [==============================] - 33s 49ms/step - loss: 0.1743 - accuracy: 0.9501 - val_loss: 0.2117 - val_accuracy: 0.9381
+Epoch 8/10
+689/689 [==============================] - 33s 48ms/step - loss: 0.1701 - accuracy: 0.9494 - val_loss: 0.2893 - val_accuracy: 0.9316
+Epoch 9/10
+689/689 [==============================] - 33s 48ms/step - loss: 0.1747 - accuracy: 0.9500 - val_loss: 0.1915 - val_accuracy: 0.9379
+Epoch 10/10
+689/689 [==============================] - 33s 48ms/step - loss: 0.1761 - accuracy: 0.9492 - val_loss: 0.1993 - val_accuracy: 0.9412</code></pre></div>
+<p>Above we trained the model with our generated Dataset. Let's discuss about the parameters that we passed to the <code class="language-text">fit</code> :</p>
+<ul>
+<li><code class="language-text">cell_images_training</code>-  This is the training data that we have generated preveously from our Data Directory.</li>
+<li><code class="language-text">epochs=10</code> - Epochs is a number that how many times model is going to train on that training data. For each epoch Network Backtrack the model and improves the accuracy. </li>
+<li><code class="language-text">validation_data=cell_images_validation</code> - Here we will pass our testing data.</li>
+<li><code class="language-text">verbose=1</code> - Due to this, it displays the output.</li>
+</ul>
+<p>Object of this whole process is stored in the variable <code class="language-text">H</code>.
+From this object we can get values of <code class="language-text">training accuracy</code>, <code class="language-text">validation accuracy</code>, <code class="language-text">training loss</code> and <code class="language-text">validation loss</code> for each epochs. </p>
+<p>And by accessing these information we will plot a training and validation graph for loss and accuracy of our model.</p>
+<h2 id="visualizing-accuracy" style="position:relative;"><a href="#visualizing-accuracy" aria-label="visualizing accuracy permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Visualizing Accuracy</h2>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+
+
+acc <span class="token operator">=</span> H<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">'accuracy'</span><span class="token punctuation">]</span>
+val_acc <span class="token operator">=</span> H<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">'val_accuracy'</span><span class="token punctuation">]</span>
+loss <span class="token operator">=</span> H<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">'loss'</span><span class="token punctuation">]</span>
+val_loss <span class="token operator">=</span> H<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">'val_loss'</span><span class="token punctuation">]</span>
+n <span class="token operator">=</span>np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">11</span><span class="token punctuation">)</span>  <span class="token comment"># Because 10 epochs</span></code></pre></div>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python">fig<span class="token punctuation">,</span> <span class="token punctuation">(</span>ax1<span class="token punctuation">,</span> ax2<span class="token punctuation">)</span> <span class="token operator">=</span> plt<span class="token punctuation">.</span>subplots<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+ax1<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>n<span class="token punctuation">,</span> loss<span class="token punctuation">,</span> label <span class="token operator">=</span> <span class="token string">'Training Loss'</span><span class="token punctuation">)</span>
+ax1<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>n<span class="token punctuation">,</span> val_loss<span class="token punctuation">,</span> label <span class="token operator">=</span> <span class="token string">'Val_Loss'</span><span class="token punctuation">)</span>
+ax1<span class="token punctuation">.</span>legend<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+ax2<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>n<span class="token punctuation">,</span> acc<span class="token punctuation">,</span> label <span class="token operator">=</span> <span class="token string">'Training Accuracy'</span><span class="token punctuation">)</span>
+ax2<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>n<span class="token punctuation">,</span> val_acc<span class="token punctuation">,</span> label <span class="token operator">=</span> <span class="token string">'Val Accuracy'</span><span class="token punctuation">)</span>
+ax2<span class="token punctuation">.</span>legend<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 378px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/5e7023bb870f454d38eb9c8eadda3544/f0991/output_26_0.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 65.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsSAAALEgHS3X78AAACwklEQVQ4y5VTSUwTURhuy2KRpZGLXjxwMFwIHrx4AONyIhBM3OLBs5fGBCJ6MUZwN2hrAkc0RmLARiCsAYtxDSCJQcNi2ykdOjOdIl1mazvLm5nnewM1EuP2J1/+759588333vt/mw1Fko1WhCJUH81+862Gw88pivKFw2Efy7I+juN8qVTKl8bgeF86nd7kOOMacfS+D60bJUmyDesVt3dcr82IHITQgLFYDK6vx6EoivB/QxCESSxYePPW7Wo5m8kJWcVAfwYcLwDdhMA0TWAgmBBxWQAmzwAzk9ysMwlgclFgGgCtgQoWRC4HLME79zqrVTmXk7iEkePWAVQ5BAlAaCJAAGVU51KbXBEAFBiUJWDqQIeZDfx8m+COK1fb96OPLdv6tk2o+bV/DlWwEs9zfixoI1eJsijNPECH7CUia13BKOslYklPIEI/XAqRXQST8ISirOfjUrj7C0F5A9SGZyG45p35/LV7mWQ9BMV2rhCRnsXFxfNYb2ddff3uleXlBjK00jT50n9q4s1sk//DfOOw/93x/pHJk5j7Zz41Pn7ae3po6nXz1Pv5xoHp2eaeQf+Z8bdzTa/mFhr6h8bODQ+P1FkOHz3p3ffDvqFat/0r8oeR5+ZWjbipbG2Zn7YEx8Yn9iqKLGc0QxdloFmH/1egCzPUfK1sCb7Aes62S5drkaCSyqhQ1w0dtYvxO+BQNN1QNWAoqmaoqoqBTcBkMjloOdSk9B4xK0PtHxtYQ42HWgSiybAGgWEYCACA8Xh8FOuVtlxw19DxjdU0LzKSKNKSJFF5iD/VoiTRAs9R2QRN0VGSCgSCdDAYpAiCINF2eTSyPVjQbrMXOs6eaC54dveio7zCVX7s6JGC1tZWR1VVVXFlZWWZ2+12dFy/YXe5KipqDhwssvVBe8u1+0WHD9W7kOECBFtJSckup9NZ+h04NEGzr9iPVQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="png"
+        title="png"
+        src="/static/5e7023bb870f454d38eb9c8eadda3544/f0991/output_26_0.png"
+        srcset="/static/5e7023bb870f454d38eb9c8eadda3544/5a46d/output_26_0.png 300w,
+/static/5e7023bb870f454d38eb9c8eadda3544/f0991/output_26_0.png 378w"
+        sizes="(max-width: 378px) 100vw, 378px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>The graph explains that Validation Accuracy is increasing gradually and at on point it becomes constant. So it tells that our models is quite good. </p>
+<p>So now let save the model, so that we can easily share it with others or deploy to make it available to others.</p>
+<h2 id="saving-the-model-for-future-use" style="position:relative;"><a href="#saving-the-model-for-future-use" aria-label="saving the model for future use permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Saving The Model For Future Use</h2>
+<div class="gatsby-highlight" data-language="python"><pre class="language-python"><code class="language-python">model<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token string">'maleria_cell_classyfier.h5'</span><span class="token punctuation">)</span></code></pre></div>
+<p>Here you will get the file named as <code class="language-text">maleria_cell_classyfier.h5</code>, all your model information is stored here. Now if you want to share your model to another
+person, you need to share only this file. So there is no need to send whole notebook or your source code to others. </p>
+<h2 id="conclusion" style="position:relative;"><a href="#conclusion" aria-label="conclusion permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Conclusion</h2>
+<p>In this project we worked with Malaria cell images and created a model to classify infected and uninfected cell images with 93% of accuracy. </p></section><footer class="post__PostFooter-h8gzap-9 bVnRow"><p>Published under <span><a class="post__FooterTagLink-h8gzap-10 jqxPBx" href="/tag/deep-learning">Deep Learning</a>, </span><span><a class="post__FooterTagLink-h8gzap-10 jqxPBx" href="/tag/cnn">CNN</a>, </span><span><a class="post__FooterTagLink-h8gzap-10 jqxPBx" href="/tag/project">Project</a></span> on <time dateTime="2020-10-05T00:00:00.000Z">05 October, 2020</time>.</p></footer></article></div></div><section class="post__PostAddition-h8gzap-11 bYZhdV"><div class="common__Container-sc-1d5kp8-0 post__PostAdditionContent-h8gzap-12 iKTLAq"><div class="post__BioWrapper-h8gzap-13 gTfYTh"><section class="bio__StyledBio-sc-19adui4-0 iHGPyz"><div class="avatar__StyledAvatar-sc-1v6bq9n-0 kXzLbm gatsby-image-wrapper" style="position:relative;overflow:hidden;display:inline-block;width:55px;height:55px"><img aria-hidden="true" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsSAAALEgHS3X78AAAFiElEQVQ4yzXUa1CU9xXH8X3XTjNpEzVREffCPntfWJYsLCEBbxAvjcKQBgnBKCMRNCCCbhFUKKxpnIJg2aCiDU4mpuAERkyQixDEomgUlMuyXIJWYu0o4hWBiGa+/dNOXzzvnvmcc37/M0f2y902pkcaGb9WxlTvYZ51lzJ+pYgn7oPc72+kt/k4TScOUl/h4mb7UZ50l3D3/D5u1O2k79uP6a5N48eLhYx0ljJw+SCyGfD5rTNM9PyNKXcZ0wJ87nFx64cCUtdHE2AwofH2QTlPTeTiRezasoZzFQ7+dW43nm8T8ZxJZ/hCESOXixkUqOyX0Qu8uN3EpLucn91HeOE+xHR/MTvXRzD/NQXe8zTMnSUx52WJ3/5azsu/8iLQV8fJw5sYrE0Q4CcMtRVzXXQ51DEDjrWLDpt42nWUyZ7DMHiIioL1WCQtRp0RjVyFaYESi+jSslCNz2sSr/xGzuI3THRWxTL0fSoD7X9muP0z/tn+ObIXD0SGd+p52lPCVFcp070utm1YwVK9nvyIEBx2I7l2CeebepxBRuL1Wrxn+eCnlmgsj2aoJR1Pm5Mf2/IYbisU4KN/MP2glom+/UxeLYGBI+x1xLL/g1WMOpM4vjKQw2EGSkP1FAWpyLJZMHtrMMp9qP8iBk/TdnpbBHZefBcKBPj4Is8enRIj/5WnV108d5dScyiFmt1JNG+N48uVwRwNs+Fa9AY77DrS7WYWq5RsXbuC6w2pdNel4T6bx40L+QKdAR8J8OFJHvSW8KSrhOmuYnqOp1D/p03kbozmo5AA9iy2sUIjEaDwYbW/mtWWhZSkvMvw6ZT/gp7mfDH6/8Gxszwbq+Fhv0vk6GKy9VNGctbSVZSGa+MfcAT7Ux0fTqKflnizieQgAwkBSrKXKeiuSMAt1qavMY+B5pkc/4Ls2b1afv6pWuxhMZNXCpio28ONjEgef5VDU2QIQ44kPJ/EUmRV4VoqRl9uJSNgAflhc+n7OoGeM2n0nM6hvyn/f+DY9Uru9n7BrbZM7pzL4W7dLh5W5TFa+SlV8Yu45NhM2Zrf87F6IclmJX+0qclapKNmz2oGqrfR05BJX/Me+ltyGTy3D9nk41am7jXzsLuQB50FjHcWMtFRwkBZOtXJ79CTl0pzaizZwVoS9T7E6pSccMYw0rqD3qrNXKvZxrXTmXQ17MT9vVOAdxqZunOWex1OhhodjLbnc1+sgOfYNtqc67m5L42vQ7U47QpiTRJROhWd5UkMnU6ksyKOq5Wb6KjewZVaUUDkKBu/2cDEv5sY84hXqt8sjkQOl49vodmZRueBdL5LiaM43MyHvnJCJTnxJi0H0t5ncKa7Q+9xqTyB81WpdNRmcK0xS4A/1XF/6BTjniJu/5DFcOsuNscs47OYVdw84OCb9HUkL/VntVZJstHIRl9frJKJ9q8S6ToSxdnSeForttBRk0lHvQPZ8/stjHq+4/bloxwrySB6SQQBpiAi1DqKltj5PDKM3EA9GQY9W01W3tUa8Zrjw4bIcE4eiKGlLJaG8k1cPJHJpVPbkdVVutiblcqG2Gji3o9jZXgk0kI/bJKFDw0GsgM07DVKbNfoiDEYMXvp8HpV4vVZanHaDBQ5omg6lk773x2cr9yJbEPMWoICQlCIH5eELCfUFoFRFYhRgGvNNrL9jOT5m9ht8OUdtQmv2Rrm/05i/itqVPMs6ORmtq+LpPHLbFq+ERnqFRYWzNZiUFkJ8Q8nzLoKf+ktdAorVo2V3KAgCt+y857KjwWis9kvKQQmYVDY8JPexKj2xy4KJ637gGP705FJcy0o55gxyYMxK4KJWvYR4fZo1K+LQrP0RBlsLPX25dWX1ALSiDv5Nm9bVxBqXY58jgHlfD3+IvOVEWsIC7TzH1vJ3nqBK2xDAAAAAElFTkSuQmCC" alt="Hrithik Pawar" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms"/><noscript><picture><source srcset="/static/7853da49f15639a03791239c31be6669/eaa90/avatar.png 1x,
+/static/7853da49f15639a03791239c31be6669/4747d/avatar.png 1.5x,
+/static/7853da49f15639a03791239c31be6669/3b7ca/avatar.png 2x" /><img loading="lazy" width="55" height="55" srcset="/static/7853da49f15639a03791239c31be6669/eaa90/avatar.png 1x,
+/static/7853da49f15639a03791239c31be6669/4747d/avatar.png 1.5x,
+/static/7853da49f15639a03791239c31be6669/3b7ca/avatar.png 2x" src="/static/7853da49f15639a03791239c31be6669/eaa90/avatar.png" alt="Hrithik Pawar" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div><h3 class="bio__AuthorName-sc-19adui4-2 lfACiL">Hrithik Pawar</h3><p class="bio__AuthorDescription-sc-19adui4-1 lbetsi">I am a Bachelor's student at Shivaji University, Kolhapur pursuing a B.Tech degree in Computer Science and Technology. I have a passion for converting ideas into reality with the Machine Learning approach. I work with various Web Development frameworks from Python and Javascript family and introduce them with my Machine Learning abilities.</p><ul class="social-channel-list__StyledSocialChannels-sc-16w9pwh-0 YZAaE"><li class="social-channel-list__StyledSocialChannel-sc-16w9pwh-1 hLhzMS"><a href="https://twitter.com/nehalist" target="_blank" rel="noopener" aria-label="twitter"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg></a></li><li class="social-channel-list__StyledSocialChannel-sc-16w9pwh-1 hLhzMS"><a href="https://www.linkedin.com/in/hrithik-pawar/" target="_blank" rel="noopener" aria-label="linkedin"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg></a></li><li class="social-channel-list__StyledSocialChannel-sc-16w9pwh-1 hLhzMS"><a href="https://github.com/hrik24-git" target="_blank" rel="noopener" aria-label="github"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 496 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></a></li></ul></section></div></div></section></main><footer class="style__StyledFooter-sc-1oqvjzu-0 gpDhwt"><div class="common__Container-sc-1d5kp8-0 style__FooterContainer-sc-1oqvjzu-1 ctpkkx"><nav class="style__StyledNav-sc-1oqvjzu-4 etXHUJ"><ul><li><a class="style__FooterMenuLink-sc-1oqvjzu-6 dLTgSL" href="/page">About</a></li><li><a href="/sitemap.xml" rel="noopener noreferrer" class="style__FooterMenuItem-sc-1oqvjzu-5 fCazFg">Sitemap</a></li></ul></nav><div><p class="style__Copyright-sc-1oqvjzu-2 cXOFUh"><strong>Hrithik Pawar</strong> © <!-- -->2020</p><p class="style__DesignBy-sc-1oqvjzu-3 bqPxdl">Theme by <a href="https://nehalist.io" target="_blank" rel="noopener">nehalist.io</a></p></div></div></footer></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/Malaria-Detection";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-bdf3c41affce5f48230e.js"],"app":["/app-cd5d502700a82b70e6de.js"],"component---node-modules-nehalist-gatsby-theme-nehalem-src-pages-404-tsx":["/component---node-modules-nehalist-gatsby-theme-nehalem-src-pages-404-tsx-7c60f8995aafae9af341.js"],"component---node-modules-nehalist-gatsby-theme-nehalem-src-pages-archive-tsx":["/component---node-modules-nehalist-gatsby-theme-nehalem-src-pages-archive-tsx-a4c42eb3c889ba974a3f.js"],"component---node-modules-nehalist-gatsby-theme-nehalem-src-pages-tags-tsx":["/component---node-modules-nehalist-gatsby-theme-nehalem-src-pages-tags-tsx-772a2d24c73a867e74cf.js"],"component---node-modules-nehalist-gatsby-theme-nehalem-src-templates-page-tsx":["/component---node-modules-nehalist-gatsby-theme-nehalem-src-templates-page-tsx-b86d67b07e827c8a8c9c.js"],"component---node-modules-nehalist-gatsby-theme-nehalem-src-templates-post-tsx":["/component---node-modules-nehalist-gatsby-theme-nehalem-src-templates-post-tsx-ac01f768f0f2ddfded57.js"],"component---node-modules-nehalist-gatsby-theme-nehalem-src-templates-posts-tsx":["/component---node-modules-nehalist-gatsby-theme-nehalem-src-templates-posts-tsx-0b8321ad48de268c4072.js"],"component---node-modules-nehalist-gatsby-theme-nehalem-src-templates-tag-tsx":["/component---node-modules-nehalist-gatsby-theme-nehalem-src-templates-tag-tsx-e21403025453955460d3.js"]};/*]]>*/</script><script src="/polyfill-bdf3c41affce5f48230e.js" nomodule=""></script><script src="/component---node-modules-nehalist-gatsby-theme-nehalem-src-templates-post-tsx-ac01f768f0f2ddfded57.js" async=""></script><script src="/commons-b578b680b3f5b3459afb.js" async=""></script><script src="/1bfc9850-3ff1cbed467f4813417f.js" async=""></script><script src="/styles-7d4153d260c0197f0043.js" async=""></script><script src="/app-cd5d502700a82b70e6de.js" async=""></script><script src="/framework-81279cacaab4bdba7685.js" async=""></script><script src="/webpack-runtime-d2c4da72ac7d283b7607.js" async=""></script></body></html>

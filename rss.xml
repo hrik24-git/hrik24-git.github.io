@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[RSS Feed]]></title><description><![CDATA[I am a %TOPICS%.]]></description><link>http://localhost:8000</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 06 Oct 2020 06:44:42 GMT</lastBuildDate><item><title><![CDATA[Malaria Detection using Convolutional Neural Network]]></title><description><![CDATA[Malaria Detection using Convolutional Neural Network with 93% accuracy developed using Keras.]]></description><link>http://localhost:8000/Malaria-Detection</link><guid isPermaLink="false">http://localhost:8000/Malaria-Detection</guid><pubDate>Mon, 05 Oct 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h1 id=&quot;maleria-detection&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#maleria-detection&quot; aria-label=&quot;maleria detection permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Maleria Detection&lt;/h1&gt;
+&lt;p&gt;Hello! Here we are going to deal with identification of cell which are infected by Maleria. We have dataset in which we have images of cells
+stored in two separate directories. One directory contains 13,780 images on infected cells and in another directory named as uninfected also contains
+13,780 images of uninfected cells. &lt;/p&gt;
+&lt;p&gt;So, in this notebook we are going to create a Deep Learning Model which will classify the cell image as infected on uninfected by marleria.&lt;/p&gt;
+&lt;p&gt;Here we will be dealing with images hence using a Convolutional Neural Network will be a first choice for any Machine Learning Practitioner.
+CNN will extract important features from the image, which will help our model to classify the particualar image as it is a
+infected or uninfected cell of Maleria.&lt;/p&gt;
+&lt;h2 id=&quot;collecting-data-set&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#collecting-data-set&quot; aria-label=&quot;collecting data set permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Collecting Data Set&lt;/h2&gt;
+&lt;p&gt;This will be first step for every Machine Learning or Deep Learning Project. Without data, how will you train your model...&lt;/p&gt;
+&lt;p&gt;So let&apos;s download our dataset of Cell Images.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;!wget https&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;//&lt;/span&gt;ceb&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;nlm&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;nih&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;gov&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;proj&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;malaria&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;cell_images&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;zip&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;--2020-10-04 14:41:51--  https://ceb.nlm.nih.gov/proj/malaria/cell_images.zip
+Resolving ceb.nlm.nih.gov (ceb.nlm.nih.gov)... 130.14.52.15, 2607:f220:41e:7052::15
+Connecting to ceb.nlm.nih.gov (ceb.nlm.nih.gov)|130.14.52.15|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 353452851 (337M) [application/zip]
+Saving to: ‘cell_images.zip’
+
+cell_images.zip     100%[===================&amp;gt;] 337.08M  40.8MB/s    in 8.9s    
+
+2020-10-04 14:42:01 (37.8 MB/s) - ‘cell_images.zip’ saved [353452851/353452851]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;!unzip cell_images&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;zip&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;[1;30;43mStreaming output truncated to the last 5000 lines.[0m
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_118.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_126.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_134.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_141.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_168.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_175.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_183.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_221.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_222.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_87.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102428_cell_91.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102516_cell_104.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102516_cell_13.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102516_cell_146.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102516_cell_168.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102516_cell_177.png  
+ extracting: cell_images/Uninfected/C236ThinF_IMG_20151127_102516_cell_179.png  
+ .
+ .
+ .
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_141520_cell_22.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_141520_cell_31.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_141520_cell_38.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_141520_cell_42.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_141520_cell_45.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_141520_cell_64.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_141520_cell_73.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_141520_cell_9.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_11.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_14.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_15.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_3.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_45.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_47.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_52.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_53.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_55.png  
+ extracting: cell_images/Uninfected/C99P60ThinF_IMG_20150918_142128_cell_56.png  
+  inflating: cell_images/Uninfected/Thumbs.db  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Above we downloaded the zip file that contains our data and we extracted it. As mentioned above we get two folders in &lt;code class=&quot;language-text&quot;&gt;cell_images&lt;/code&gt; folder, those are &lt;code class=&quot;language-text&quot;&gt;Parasitized&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;Uninfected&lt;/code&gt;. &lt;code class=&quot;language-text&quot;&gt;Parasitized&lt;/code&gt; folder contains infected cell images having count of 13,780, similarly &lt;code class=&quot;language-text&quot;&gt;Uninfected&lt;/code&gt; folder contains uninfected mean healthy cell images having count of 13,780.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;Cell_Images_dir &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/content/cell_images&apos;&lt;/span&gt;
+Parasitized_dir &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/content/cell_images/Parasitized&apos;&lt;/span&gt;
+Uninfected_dir &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/content/cell_images/Uninfected&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Above we stored there the path of each folder so that it will be easier to use the path by directly calling the variables.&lt;/p&gt;
+&lt;p&gt;Now, Let&apos;s visualize what we have in our dataset. Let see one one images from &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; os
+
+Parasitized_images &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;listdir&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Parasitized_dir&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Uninfected_images &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;listdir&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Uninfected_dir&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; PIL &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Image
+
+&lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Parasitized Cell &apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Image&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Parasitized_dir &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/C129P90ThinF_IMG_20151004_134306_cell_126.png&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Parasitized Cell &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 157px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/544a084aaf6cec81b0f067e63c1eaafd/fdd16/output_9_1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 94.26751592356688%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAIAAAAf7rriAAAACXBIWXMAAAsSAAALEgHS3X78AAADRklEQVQ4y22U22sUdxTHZxUfLH2pgiQUi9V4o+jDUlqlkhZBFI23IFp9EEkoJnmzpCltmhpvMTFhN/O7z8XZ3dk1a6J5UAt9UvCx0KbN7lx3m2iyTZBY/Bs885v17uEw/PbsfOac8/2d309RpC2TFq8/37JpsKOtctN6fMu+O9jfdbSls/Vgw+qP4K9EIqG8a8tkNLm5yfrh3Fwhu3gj5wnqCTZjGUsThaXJ4pSBk5ua4J3lL3K8wjavW1vo+7FWsBdytkeZQ3EgeMC5R4iDUQmhx9fNaYE/bWx4mwfL/9rzbHLcIcTFNOQiECLQRAALFjtzVPRI1+zuc+s/bojbrJNtLXufThbLCAMWuSRDTYtcCE/FpaGUM5IujaTnqV4axsmmDbJkyU9e/KWWs3zGJKlVdC0mYeGqeHog5aZpQFnF4A9PXfht40B52PyudV9E7ti2dSZ/3ec04EzmjDEdPNREeUQtj+DQ0ENTVE0+1Tt696uBqYv6X6bauHqV0n3q2P+3iw7BAFc0AdkkCU9ogXmIBppeyZrVTMRXDN1HopQi/43lfj59Quk7c/JJMe8SAq+CMB7GoeChDl8BwZirEp+LSsaYsY1qJurCSWEHsdmM+QBdVTK93TU7C9sTMB5QDvKEnANZNbSqafiMl1NkepiWUvSfIfXvK2kPcZdA/9ofRlo5e+TAk2JBZoaNjaSWPQMMDm3rEPQQc0ahCuYTDjlgO2ct8961fmXLurWzeStKCzAMhmChxsErsvJ683IBQZ9RH0YIEcj30+lvI8HHentq2SxoFkYke52vNy+4D4pw6nPiUwqZ54u5Q807I3jXts8Wx/IBoy5Sw2jP6Es+dvgZBRnxGS4j9ZFp3hnoX7FieX22j3/TPA9zQkFb8joWk3IKqIeRi0Z9QpZujx3ctaM+nvGgn9z99dL4DSjepTjCIDkkFLIQIBmeVkFq7Jmi/VA0XgnlxfGEgwqzPtTRNl/I1XJZEMajxIvqJB7FsP7X0OCcLkwUOltb3jgYL+8DeO7f+cXv1y7XbubmCtacbc1kjLm8tTBu/6mhwY725uT2hLT3XAlx9MMPVu75Mom+75q41HsfD9nne9oP7/ukcY0s9Y3L5DmaSDXKj/6u1wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;png&quot;
+        title=&quot;png&quot;
+        src=&quot;/static/544a084aaf6cec81b0f067e63c1eaafd/fdd16/output_9_1.png&quot;
+        srcset=&quot;/static/544a084aaf6cec81b0f067e63c1eaafd/fdd16/output_9_1.png 157w&quot;
+        sizes=&quot;(max-width: 157px) 100vw, 157px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Uninfected Cell &apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Image&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Uninfected_dir &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/C142P103ThinF_IMG_20151005_223257_cell_174.png&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Uninfected Cell &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 124px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8befa706b332b586b08e0251c7f53301/d6e54/output_10_1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 114.51612903225808%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAXCAIAAACEf/j0AAAACXBIWXMAAAsSAAALEgHS3X78AAAD0UlEQVQ4y22U228UVRzHh61PVEEkAsWUYjTogzE+8NCQ8EBIqyTUiCHRigkmQqy1oRejGOKLRg22m6U7O2ful53L3rqFAm9KgiHG7u7s7LV7p65Jg/+H3zMTkFYnv5ycmTmf3/f8LucwzOMnFNrlP8zbo8evT3/ayeq9m4b0zexrI8P4ix9YwPzvMxAKYRwfPb62+F1/1dnMWCWV91S+mzQ2bHV57otXhw8Hy6j7beQAJT8cO7V1O9Wy9bxAcnysIHAwTFyJ9DPOAy7y0fjpgPyXDzQnx071s05R4nM8GD5PuAJPYJjA1mNsRREfpi12fuatY69s4ydOjj66kyqKWMq6AgkwuHB9L76xOY7N81wvGX90N3XpvTN+jkJ0z7d//r5pqTmfzJOY62OwoihgLGAvhC3EWJdHFOyGpd7nlvbv3UNl3z15op+x8wiS51yBK4pgRE+WSooM8yTRFUmBY9dv3CiQWFGkiUCAn507S+HIlameY+S4KCUlvqSIJVWqGmrNUKu6UtHksiY/WAz/vhTxRGyHCjRM7TcSPrDveUa+utCMq+vLyy7hPFkoa1LdVBu2Dtuw9VpcxZccy+WikCWuyHkSD/HNrLVw4TwzdW4ClfgjGnUJKasSVgNrpcx2xsZYM9WSKpZVGYH4ERHACORhxpSvLTDzk+e3bqVRT6QH66qG3HSMTsbu3nQ6q5SHr6qhQN+TBMAwKAO+PnOZmRw/3V9NuDLvKXTPUG4mjHbGBNy7lWivWM2kUTc1RA7NQBlwNxknX80yewZ3Fw2hFpeLMpQFKDccrfMY7mRtClsaviMjT5Q30/ZPn19i9j47WLGValwqQlwWKpqEZm6njfaK2c5aGJtJvW5rFR0wH4ijrn9mE5G5aVqt5S9nttZSCBv/EHbNVBoJrZUyWmmzlY5T2FIBlxQhgGHdtHnlg/cpfPTwoV/ZpZZtFERSVsSKjsiVDUdvJIyGYwQFw0e0QABXVKliKseODDMhv8VHhg7e5yINS3d98bIuVeMK8gQMjqisJpX8mGm2Eib/9XzIP1HMMwMDGD8+M/bXatKViec3GTKP9vI7jGqCpBUWCObdlH3izTd2Xgb81bm/72ZyQgxle9oQLTqXFklEnp1rFy9suw+C8zly6OA9bnFrLQ33SH5gKIHnT/Ii10tb92LhAy/s23ak6fn0X15+aSg8O+UZUj2uYjVIZBFWVIRuyvwluhhcaaFd/7nPntwyrx89cif8Q2/FqttKJ22iZwo6iSxMw/VOzR18kMbnBndfPDvuOWLix28/mXhn6MX9wVX3NPkPow+ftjtoyosAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;png&quot;
+        title=&quot;png&quot;
+        src=&quot;/static/8befa706b332b586b08e0251c7f53301/d6e54/output_10_1.png&quot;
+        srcset=&quot;/static/8befa706b332b586b08e0251c7f53301/d6e54/output_10_1.png 124w&quot;
+        sizes=&quot;(max-width: 124px) 100vw, 124px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&quot;preprocessing-the-data&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#preprocessing-the-data&quot; aria-label=&quot;preprocessing the data permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Preprocessing The Data&lt;/h2&gt;
+&lt;p&gt;After visualizing the Images from both classes we can easily detect that there is an infecter portion in Parasitized images. But we want to train our deep learning model that it should detect that and classify the images in Paracitized or Uninfected classes.&lt;/p&gt;
+&lt;p&gt;Now we have data which is in image format, but we have to convert it in machine tarinable format. We cannot input the image data as it is, we have to preprocess it first. The data we have is already supervised and separeted in folder so we have some functions from &lt;code class=&quot;language-text&quot;&gt;tensorflow&lt;/code&gt; which can easily preprocess these data.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; tensorflow&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;keras&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;preprocessing&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;image &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; ImageDataGenerator
+
+data_gen &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; ImageDataGenerator&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;validation_split&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.2&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;rescale&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;255.0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+cell_images_training &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;  data_gen&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;flow_from_directory&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Cell_Images_dir&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; target_size&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;125&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;125&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; class_mode&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;categorical&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; subset&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;training&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+cell_images_validation &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;  data_gen&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;flow_from_directory&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Cell_Images_dir&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; target_size&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;125&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;125&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; class_mode&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;categorical&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; subset&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;validation&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Found 22048 images belonging to 2 classes.
+Found 5510 images belonging to 2 classes.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;cell_images_training&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;class_indices&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{&amp;#39;Parasitized&amp;#39;: 0, &amp;#39;Uninfected&amp;#39;: 1}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;If you are seeing this first time then I am sure it&apos;s little confusing, Let me explain what it is and what is it doing?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;First we imported a &lt;code class=&quot;language-text&quot;&gt;ImageDataGenerator&lt;/code&gt; class from &lt;code class=&quot;language-text&quot;&gt;keras&lt;/code&gt; which helps us to preprocess images so that we can use them to train our neural network.  &lt;/p&gt;
+&lt;p&gt;Next we created a object of &lt;code class=&quot;language-text&quot;&gt;ImageDataGenerator&lt;/code&gt; class and passed a &lt;code class=&quot;language-text&quot;&gt;Normalization Factor&lt;/code&gt; i.e. &lt;code class=&quot;language-text&quot;&gt;1/255.0&lt;/code&gt;.
+Normalization is a process that changes the range of pixel intensity values. If you want to read more about normalization then &lt;a href=&quot;https://en.wikipedia.org/wiki/Normalization_(image_processing)&quot;&gt;Click Here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There is one more parameter that we passed, which is &lt;code class=&quot;language-text&quot;&gt;validation_split&lt;/code&gt;. It will split our data in two datasets &lt;code class=&quot;language-text&quot;&gt;training&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;testing&lt;/code&gt;. &lt;/p&gt;
+&lt;p&gt;After creating the object, now we are able to access the functions of it. There is function &lt;code class=&quot;language-text&quot;&gt;flow_from_directory&lt;/code&gt; which goes through the directory and catogorixe the data according to the folders in passed directory. Let&apos;s understand about the parameters that are passed in it:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;Cell_Image_dir&lt;/code&gt; - This is a variable where path of main directory is stored. This directory contains training images of cells classified in two different folders as &lt;code class=&quot;language-text&quot;&gt;Parasitized&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;uninfected&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;target_size=(125, 125)&lt;/code&gt; - It converts all images in same size as passed. Here I passes (125, 125). In Neural Networks it is very important that all input images must have same size. &lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;class_mode=&amp;#39;categorical&amp;#39;&lt;/code&gt; -  It specifies the type of classification that must be done on passed directory. &lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;subset=&amp;#39;training&amp;#39;&lt;/code&gt; / &lt;code class=&quot;language-text&quot;&gt;subset=&amp;#39;validation&amp;#39;&lt;/code&gt; - It will classify datasets into training and validation dataset.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you want to read more about Image Processing in Keras then &lt;a href=&quot;https://keras.io/api/preprocessing/image/&quot;&gt;Click Here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Now we are ready with our Data. Preprocessing of our data is handled by Keras. Now we can work on creating Nerural Network and traing our data on that model. &lt;/p&gt;
+&lt;p&gt;Here we will be using Keras for creating our Deep Neural Network. We will be dealing with image data hence we will use Convolutional Neural Network to train our data. &lt;/p&gt;
+&lt;p&gt;Let&apos;s import the necessary packages, then we will discuss about each of them. &lt;/p&gt;
+&lt;h2 id=&quot;preparing-neural-network&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#preparing-neural-network&quot; aria-label=&quot;preparing neural network permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Preparing Neural Network&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; tensorflow&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;keras&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;layers &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Conv2D&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; MaxPool2D&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; Dense&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; Dropout&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; Flatten
+&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; tensorflow&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;keras&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;models &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Sequential&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Above we imported different layers and &lt;code class=&quot;language-text&quot;&gt;Sequential&lt;/code&gt; model from Keras. Each layer has different tasks to perform.  &lt;/p&gt;
+&lt;p&gt;Layers that we imported:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;Conv2D&lt;/code&gt; - This layer creates a convolution kernel that is convolved with the layer input to extract features from inputed image.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;MaxPool2D&lt;/code&gt; - Downsamples the input representation by taking the maximum value over the window defined by &lt;code class=&quot;language-text&quot;&gt;pool_size&lt;/code&gt; for each dimension along the features axis.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;Dense&lt;/code&gt; - Dense layer adds another layer in Neural Network with specific activation function.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;Dropout&lt;/code&gt; - The Dropout layer randomly sets input units to 0, which helps in overfitting the model&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;Flatten&lt;/code&gt; - Flattens the input. Converts input size to 1 dimension. &lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;Sequential&lt;/code&gt; - A Sequential model is appropriate for a plain stack of layers. Here we will be dealing continual series of Layers. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now, let&apos;s create our model for classification of infected Malaria cell images.  &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;model &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Sequential&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Conv2D&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;64&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; activation&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;relu&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; input_shape&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;125&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;125&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;MaxPool2D&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;pool_size&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Conv2D&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;64&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; activation&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;relu&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;MaxPool2D&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;pool_size&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Conv2D&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;128&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; activation&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;relu&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;MaxPool2D&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;pool_size&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Conv2D&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;128&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; activation&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;relu&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;MaxPool2D&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;pool_size&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Flatten&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Dropout&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Dense&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;512&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; activation&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;relu&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;add&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Dense&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; activation&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;softmax&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;compile&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;loss&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;categorical_crossentropy&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; optimizer&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;rmsprop&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; metrics&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;accuracy&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Above we have created our Neural Network which will be used to classify the infected Malaria Cell Images. &lt;/p&gt;
+&lt;p&gt;First we created &lt;code class=&quot;language-text&quot;&gt;model&lt;/code&gt; as a object of &lt;code class=&quot;language-text&quot;&gt;Sequential&lt;/code&gt; class. Here our neaural network gets initiated. &lt;/p&gt;
+&lt;p&gt;Then we will &lt;code class=&quot;language-text&quot;&gt;add&lt;/code&gt; layers to the neural network, there positions are pre-decided as per their functionality.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 1200px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/176224fd71739aee63645f9bca200a41/e6205/CNN.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 33.666666666666664%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAHABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAdyiAf/EABUQAQEAAAAAAAAAAAAAAAAAABBB/9oACAEBAAEFAof/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAVEAEBAAAAAAAAAAAAAAAAAAAQMf/aAAgBAQAGPwKv/8QAGRAAAwEBAQAAAAAAAAAAAAAAAAERMSFR/9oACAEBAAE/IVUl69K5pp//2gAMAwEAAgADAAAAEP8A/wD/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAZEAEAAwEBAAAAAAAAAAAAAAABABEhkYH/2gAIAQEAAT8QJlxNBj5BFjkGl29n/9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;jpeg&quot;
+        title=&quot;jpeg&quot;
+        src=&quot;/static/176224fd71739aee63645f9bca200a41/e5166/CNN.jpg&quot;
+        srcset=&quot;/static/176224fd71739aee63645f9bca200a41/f93b5/CNN.jpg 300w,
+/static/176224fd71739aee63645f9bca200a41/b4294/CNN.jpg 600w,
+/static/176224fd71739aee63645f9bca200a41/e5166/CNN.jpg 1200w,
+/static/176224fd71739aee63645f9bca200a41/e6205/CNN.jpg 1255w&quot;
+        sizes=&quot;(max-width: 1200px) 100vw, 1200px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Above image shows the struture on Convolutional Neural Network.&lt;/p&gt;
+&lt;p&gt;Whole Neural Network is divided into two sections: &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Feature Learning- &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;  Here we will be extracting the important features from the image to make perfect classification. In this layer we have &lt;code class=&quot;language-text&quot;&gt;Conv2D&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;MaxPool2D&lt;/code&gt; layers. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;Conv2D&lt;/code&gt; - As we know this is a convolutional layer. It creates kernels and convolve it throughout the image which focuses on the particular feature of image as per  the values in the kernel. Keras takes care of defining kernel with different values. Let&apos;s discuss about the parameters that we passed in convolutional layer.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;64&lt;/code&gt; - The first parameter in Conv2D layer is the number of kernels that we want to be convolved throughout the image. &lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;(3, 3)&lt;/code&gt; - The second parameter is the size of that kernel.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;activation=&amp;#39;relu&amp;#39;&lt;/code&gt; - Here we pass the activation function to convert the result of convolutin in binary. &lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;input_shape = (125, 125, 3)&lt;/code&gt; - Here we describe the shape of the input image. This we need to specify in only first layer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;MaxPool2D&lt;/code&gt; - This is a Pooling Layer, this is used to decrease some shape of the image and extract only maximum value in particular window. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;pool_size = (2, 2)&lt;/code&gt; - Here we pass the size of pool window. This window in revolved throughout the convolved image and extracts only the maximum value.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;  These two layers are used to extract important features for perfect classifiaction.&lt;/p&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;Classification - &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;  In this section Neural Network focuses on the classification part. Here we have &lt;code class=&quot;language-text&quot;&gt;Flatten&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;Dense&lt;/code&gt; Layers. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;Flatten&lt;/code&gt; - This layer is used for dimentionality reduction. This reduces the dimention of the input data and convert it into searies of features. &lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;Dense&lt;/code&gt; - Dense layer just adds another neural layer in the network, which is also called fully connected layer, which important to connect the flatten layer with output layer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In Neural Network we can also see one layer named &lt;code class=&quot;language-text&quot;&gt;Dropout&lt;/code&gt;. What this layer does is that it randomly sets input to zero. It is used to avoid overfitting of the model. &lt;/p&gt;
+&lt;p&gt;This is the overview of our neural network, but it only tells that what it is used for but if you want to see what is happening inside, then we have a function &lt;code class=&quot;language-text&quot;&gt;summary()&lt;/code&gt; which gives detailed overview of our model.  &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;summary&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Model: &amp;quot;sequential&amp;quot;
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d (Conv2D)              (None, 123, 123, 64)      1792      
+_________________________________________________________________
+max_pooling2d (MaxPooling2D) (None, 61, 61, 64)        0         
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 59, 59, 64)        36928     
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 29, 29, 64)        0         
+_________________________________________________________________
+conv2d_2 (Conv2D)            (None, 27, 27, 128)       73856     
+_________________________________________________________________
+max_pooling2d_2 (MaxPooling2 (None, 13, 13, 128)       0         
+_________________________________________________________________
+conv2d_3 (Conv2D)            (None, 11, 11, 128)       147584    
+_________________________________________________________________
+max_pooling2d_3 (MaxPooling2 (None, 5, 5, 128)         0         
+_________________________________________________________________
+flatten (Flatten)            (None, 3200)              0         
+_________________________________________________________________
+dropout (Dropout)            (None, 3200)              0         
+_________________________________________________________________
+dense (Dense)                (None, 512)               1638912   
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 1026      
+=================================================================
+Total params: 1,900,098
+Trainable params: 1,900,098
+Non-trainable params: 0
+_________________________________________________________________&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As you can see above, it gives the complete overview of the our Neural Network. It tell that in our network we arew dealing with nearly 1 million neurons.&lt;/p&gt;
+&lt;p&gt;So now let train the model with the Dataset that we generated.&lt;/p&gt;
+&lt;h2 id=&quot;training-neural-network&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#training-neural-network&quot; aria-label=&quot;training neural network permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Training Neural Network&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;H &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;fit&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;cell_images_training&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; epochs&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; validation_data&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;cell_images_validation&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; verbose&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Epoch 1/10
+689/689 [==============================] - 36s 52ms/step - loss: 0.3346 - accuracy: 0.8460 - val_loss: 0.2131 - val_accuracy: 0.9376
+Epoch 2/10
+689/689 [==============================] - 33s 48ms/step - loss: 0.1873 - accuracy: 0.9445 - val_loss: 0.2404 - val_accuracy: 0.9397
+Epoch 3/10
+689/689 [==============================] - 34s 49ms/step - loss: 0.1802 - accuracy: 0.9473 - val_loss: 0.2172 - val_accuracy: 0.9416
+Epoch 4/10
+689/689 [==============================] - 34s 49ms/step - loss: 0.1744 - accuracy: 0.9495 - val_loss: 0.1930 - val_accuracy: 0.9428
+Epoch 5/10
+689/689 [==============================] - 33s 48ms/step - loss: 0.1763 - accuracy: 0.9487 - val_loss: 0.2269 - val_accuracy: 0.9397
+Epoch 6/10
+689/689 [==============================] - 33s 48ms/step - loss: 0.1716 - accuracy: 0.9506 - val_loss: 0.2904 - val_accuracy: 0.9448
+Epoch 7/10
+689/689 [==============================] - 33s 49ms/step - loss: 0.1743 - accuracy: 0.9501 - val_loss: 0.2117 - val_accuracy: 0.9381
+Epoch 8/10
+689/689 [==============================] - 33s 48ms/step - loss: 0.1701 - accuracy: 0.9494 - val_loss: 0.2893 - val_accuracy: 0.9316
+Epoch 9/10
+689/689 [==============================] - 33s 48ms/step - loss: 0.1747 - accuracy: 0.9500 - val_loss: 0.1915 - val_accuracy: 0.9379
+Epoch 10/10
+689/689 [==============================] - 33s 48ms/step - loss: 0.1761 - accuracy: 0.9492 - val_loss: 0.1993 - val_accuracy: 0.9412&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Above we trained the model with our generated Dataset. Let&apos;s discuss about the parameters that we passed to the &lt;code class=&quot;language-text&quot;&gt;fit&lt;/code&gt; :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;cell_images_training&lt;/code&gt;-  This is the training data that we have generated preveously from our Data Directory.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;epochs=10&lt;/code&gt; - Epochs is a number that how many times model is going to train on that training data. For each epoch Network Backtrack the model and improves the accuracy. &lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;validation_data=cell_images_validation&lt;/code&gt; - Here we will pass our testing data.&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;verbose=1&lt;/code&gt; - Due to this, it displays the output.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Object of this whole process is stored in the variable &lt;code class=&quot;language-text&quot;&gt;H&lt;/code&gt;.
+From this object we can get values of &lt;code class=&quot;language-text&quot;&gt;training accuracy&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;validation accuracy&lt;/code&gt;, &lt;code class=&quot;language-text&quot;&gt;training loss&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;validation loss&lt;/code&gt; for each epochs. &lt;/p&gt;
+&lt;p&gt;And by accessing these information we will plot a training and validation graph for loss and accuracy of our model.&lt;/p&gt;
+&lt;h2 id=&quot;visualizing-accuracy&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#visualizing-accuracy&quot; aria-label=&quot;visualizing accuracy permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Visualizing Accuracy&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; numpy &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; np
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; matplotlib&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;pyplot &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; plt
+
+
+acc &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; H&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;history&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;accuracy&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+val_acc &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; H&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;history&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;val_accuracy&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+loss &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; H&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;history&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;loss&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+val_loss &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; H&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;history&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;val_loss&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+n &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;np&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;arange&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# Because 10 epochs&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;fig&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ax1&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; ax2&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; plt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;subplots&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+ax1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;plot&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;n&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; loss&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; label &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Training Loss&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+ax1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;plot&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;n&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; val_loss&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; label &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Val_Loss&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+ax1&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;legend&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+ax2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;plot&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;n&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; acc&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; label &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Training Accuracy&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+ax2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;plot&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;n&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; val_acc&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; label &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Val Accuracy&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+ax2&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;legend&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+plt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;show&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 378px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/5e7023bb870f454d38eb9c8eadda3544/f0991/output_26_0.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 65.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsSAAALEgHS3X78AAACwklEQVQ4y5VTSUwTURhuy2KRpZGLXjxwMFwIHrx4AONyIhBM3OLBs5fGBCJ6MUZwN2hrAkc0RmLARiCsAYtxDSCJQcNi2ykdOjOdIl1mazvLm5nnewM1EuP2J1/+759588333vt/mw1Fko1WhCJUH81+862Gw88pivKFw2Efy7I+juN8qVTKl8bgeF86nd7kOOMacfS+D60bJUmyDesVt3dcr82IHITQgLFYDK6vx6EoivB/QxCESSxYePPW7Wo5m8kJWcVAfwYcLwDdhMA0TWAgmBBxWQAmzwAzk9ysMwlgclFgGgCtgQoWRC4HLME79zqrVTmXk7iEkePWAVQ5BAlAaCJAAGVU51KbXBEAFBiUJWDqQIeZDfx8m+COK1fb96OPLdv6tk2o+bV/DlWwEs9zfixoI1eJsijNPECH7CUia13BKOslYklPIEI/XAqRXQST8ISirOfjUrj7C0F5A9SGZyG45p35/LV7mWQ9BMV2rhCRnsXFxfNYb2ddff3uleXlBjK00jT50n9q4s1sk//DfOOw/93x/pHJk5j7Zz41Pn7ae3po6nXz1Pv5xoHp2eaeQf+Z8bdzTa/mFhr6h8bODQ+P1FkOHz3p3ffDvqFat/0r8oeR5+ZWjbipbG2Zn7YEx8Yn9iqKLGc0QxdloFmH/1egCzPUfK1sCb7Aes62S5drkaCSyqhQ1w0dtYvxO+BQNN1QNWAoqmaoqoqBTcBkMjloOdSk9B4xK0PtHxtYQ42HWgSiybAGgWEYCACA8Xh8FOuVtlxw19DxjdU0LzKSKNKSJFF5iD/VoiTRAs9R2QRN0VGSCgSCdDAYpAiCINF2eTSyPVjQbrMXOs6eaC54dveio7zCVX7s6JGC1tZWR1VVVXFlZWWZ2+12dFy/YXe5KipqDhwssvVBe8u1+0WHD9W7kOECBFtJSckup9NZ+h04NEGzr9iPVQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;png&quot;
+        title=&quot;png&quot;
+        src=&quot;/static/5e7023bb870f454d38eb9c8eadda3544/f0991/output_26_0.png&quot;
+        srcset=&quot;/static/5e7023bb870f454d38eb9c8eadda3544/5a46d/output_26_0.png 300w,
+/static/5e7023bb870f454d38eb9c8eadda3544/f0991/output_26_0.png 378w&quot;
+        sizes=&quot;(max-width: 378px) 100vw, 378px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The graph explains that Validation Accuracy is increasing gradually and at on point it becomes constant. So it tells that our models is quite good. &lt;/p&gt;
+&lt;p&gt;So now let save the model, so that we can easily share it with others or deploy to make it available to others.&lt;/p&gt;
+&lt;h2 id=&quot;saving-the-model-for-future-use&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#saving-the-model-for-future-use&quot; aria-label=&quot;saving the model for future use permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Saving The Model For Future Use&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;python&quot;&gt;&lt;pre class=&quot;language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;model&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;save&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;maleria_cell_classyfier.h5&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here you will get the file named as &lt;code class=&quot;language-text&quot;&gt;maleria_cell_classyfier.h5&lt;/code&gt;, all your model information is stored here. Now if you want to share your model to another
+person, you need to share only this file. So there is no need to send whole notebook or your source code to others. &lt;/p&gt;
+&lt;h2 id=&quot;conclusion&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#conclusion&quot; aria-label=&quot;conclusion permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this project we worked with Malaria cell images and created a model to classify infected and uninfected cell images with 93% of accuracy. &lt;/p&gt;</content:encoded></item></channel></rss>
